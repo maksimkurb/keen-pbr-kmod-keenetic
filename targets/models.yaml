@@ -1,0 +1,30 @@
+{
+  "models": {
+    "KN-1812": {"group": "mt7988", "status": "experimental", "evidence": "SDK representative; hardware validation pending"},
+    "KN-4210": {"group": "mt7988", "status": "experimental", "evidence": "AWG SoC mapping candidate; keenpbr module compatibility unverified"},
+    "KN-1811": {"group": "mt7622", "status": "experimental", "evidence": "SDK representative; hardware validation pending"},
+    "KN-2710": {"group": "mt7622", "status": "experimental", "evidence": "AWG SoC mapping candidate; keenpbr module compatibility unverified"},
+    "KN-3811": {"group": "mt7981", "status": "experimental", "evidence": "SDK representative; hardware validation pending"},
+    "KN-1012": {"group": "mt7981", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-2312": {"group": "mt7981", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-3611": {"group": "mt7981", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-3711": {"group": "mt7981", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-3812": {"group": "mt7981", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-4110": {"group": "mt7981", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-1810": {"group": "mt7621", "status": "experimental", "evidence": "SDK representative; hardware validation pending"},
+    "KN-1010": {"group": "mt7621", "status": "experimental", "evidence": "Candidate from supplied model list; distinct high-memory group excluded"},
+    "KN-1910": {"group": "mt7621", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-1913": {"group": "mt7621", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-2310": {"group": "mt7621", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-2311": {"group": "mt7621", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-2610": {"group": "mt7621", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-2910": {"group": "mt7621", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-1212": {"group": "mt7628", "status": "experimental", "evidence": "SDK representative; hardware validation pending"},
+    "KN-1710": {"group": "mt7628", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-1711": {"group": "mt7628", "status": "experimental", "evidence": "Candidate from supplied model list; hardware validation pending"},
+    "KN-1011": {"group": "mt7621-highmem", "status": "experimental", "evidence": "SDK representative; hardware validation pending"},
+    "KN-1912": {"group": "en7528", "status": "experimental", "evidence": "SDK representative; hardware validation pending"},
+    "KN-2010": {"group": "en7512", "status": "experimental", "evidence": "SDK representative; hardware validation pending"},
+    "KN-2112": {"group": "en7516", "status": "experimental", "evidence": "SDK representative; hardware validation pending"}
+  }
+}

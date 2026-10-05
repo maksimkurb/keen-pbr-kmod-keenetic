@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/keenetic/keenetic-sdk.git",
+  "branch": "4.03",
+  "ref": "5ff3bfda8b7f38004f9fd6d4effc6bdaedf01e05",
+  "kernel": "4.9-ndm",
+  "kernel_tag": "4.9.337-119",
+  "kernel_ref": "113cc622b3c48876927ae3c8db2e83fef4505fbf"
+}

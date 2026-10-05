@@ -1,0 +1,13 @@
+{
+  "groups": {
+    "mt7988": {"representative": "KN-1812", "arch": "aarch64", "aliases": [], "ipv6": true},
+    "mt7622": {"representative": "KN-1811", "arch": "aarch64", "aliases": [], "ipv6": true},
+    "mt7981": {"representative": "KN-3811", "arch": "aarch64", "aliases": [], "ipv6": true},
+    "mt7621": {"representative": "KN-1810", "arch": "mipsel", "aliases": [], "ipv6": true},
+    "mt7628": {"representative": "KN-1212", "arch": "mipsel", "aliases": [], "ipv6": true},
+    "mt7621-highmem": {"representative": "KN-1011", "arch": "mipsel", "aliases": [], "ipv6": true},
+    "en7528": {"representative": "KN-1912", "arch": "mipsel", "aliases": [], "ipv6": true},
+    "en7512": {"representative": "KN-2010", "arch": "mips", "aliases": [], "ipv6": true},
+    "en7516": {"representative": "KN-2112", "arch": "mips", "aliases": [], "ipv6": true}
+  }
+}

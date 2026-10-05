@@ -1,0 +1,8 @@
+obj-m += iptable_keenpbr.o
+
+ifneq ($(CONFIG_IP6_NF_IPTABLES),)
+obj-m += ip6table_keenpbr.o
+endif
+
+ccflags-y += -DKEENPBR_PRIORITY=$(KEENPBR_PRIORITY)
+ccflags-y += -DKEENPBR_VERSION=\"$(KEENPBR_VERSION)\"
