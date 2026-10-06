@@ -18,6 +18,7 @@
 | F08.2 | Done | Native snapshot assembly, exact runtime selections, повторное использование настоящих .ko и operator README |
 | F08.3 | ToDo | Удалённая сборка всех accepted keys, полный первый release и повторный workflow с reuse |
 | CI01 | Done | ShellCheck 0.9.0: явные условия вместо SC2015; scoped annotation для trap cleanup SC2317/SC2329. Полный check прошёл в pinned container |
+| CI02 | Done | Persistent safe.directory для точного GITHUB_WORKSPACE и fail-fast checked SHA; ownership failure воспроизведён, полный planner/36 tests прошли в pinned container |
 | HW01 | ToDo | Проверки на настоящих роутерах и evidence-based status promotion |
 
 ## Доказательства
@@ -33,7 +34,9 @@
 
 ## Что ещё не выполнялось
 
-Первый [GitHub Actions check](https://github.com/maksimkurb/keen-pbr-kmod-keenetic/actions/runs/37511421304/job/112433247264) завершился до tests/build на ShellCheck 0.9.0 (SC2015 и SC2317). Причина воспроизведена; исправление прошло ShellCheck 0.9.0/0.11.0, все 36 tests и runtime-safety. Изменения пока локальные; исправленный commit удалённо не запускался.
+Первый [GitHub Actions check](https://github.com/maksimkurb/keen-pbr-kmod-keenetic/actions/runs/37511421304/job/112433247264) завершился до tests/build на ShellCheck 0.9.0 (SC2015 и SC2317). Исправление CI01 прошло в следующем удалённом run.
+
+Во [втором run](https://github.com/maksimkurb/keen-pbr-kmod-keenetic/actions/runs/37520590815/job/112465024352) check прошёл, planner создал 3 475 keys/256 shards, затем Git остановил запись SHA с `detected dubious ownership`. Setup теперь постоянно регистрирует только точный GITHUB_WORKSPACE; запись checked SHA больше не маскирует ошибку через echo. В pinned container воспроизведён exit 128 до исправления, после него прошли полный planner и GitHub outputs, ShellCheck 0.9.0, 36 tests и runtime-safety. Проверено, что чужой checkout остаётся запрещённым и ошибка SHA останавливает шаг без outputs. Отчёт: `out/validation/ci-ownership.json`. Повторная удалённая проверка CI02 остаётся в F08.3.
 
 Полный backfill **3 475** build keys, публикация и router hardware tests не выполнялись. Validation snapshot — локальный subset, не полный release. Все новые mappings остаются **experimental**; runtime требует opt-in. Код workflow публикует автоматически только после полного покрытия и всех проверок.
 

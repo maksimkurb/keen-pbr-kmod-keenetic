@@ -14,6 +14,10 @@ apt-get install -y --no-install-recommends attr autoconf automake bc binutils bi
   libncurses-dev libssl-dev libxml-libxml-perl locales lzip pkg-config protobuf-c-compiler rsync shellcheck \
   passwd subversion swig unzip wget xxd xz-utils zlib1g-dev zstd
 rm -rf /var/lib/apt/lists/*
+# Container Git commands need persistent trust beyond checkout's temporary HOME.
+if [[ -n "${GITHUB_WORKSPACE:-}" ]]; then
+  git config --global --add safe.directory "$GITHUB_WORKSPACE"
+fi
 if ! getent passwd builder >/dev/null; then
   useradd --uid 1000 --create-home --shell /bin/bash builder
 fi

@@ -69,7 +69,9 @@ jobs:
           bash tests/runtime-safety.sh
       - name: Record checked commit
         id: source
-        run: echo "source_ref=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+        run: |
+          source_ref="$(git rev-parse HEAD)"
+          echo "source_ref=$source_ref" >> "$GITHUB_OUTPUT"
 
   plan:
     if: ${{ github.event_name != 'pull_request' }}
