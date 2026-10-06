@@ -1,199 +1,207 @@
 # keenpbr-kmod
 
-Build and audit separate IPv4 and IPv6 Linux 4.9 modules for the Keenetic
-`keenpbr` xtables table. The modules only register a PREROUTING table and run
-ordinary xtables rules; routing policy stays in the `keen-pbr` userspace
-project. This repository does not define a private kernel/userspace protocol.
+Build and audit separate IPv4 and IPv6 modules for the Keenetic `keenpbr`
+xtables table. The table runs only at PREROUTING and uses ordinary xtables
+rules. Routing policy stays in the separate `keen-pbr` userspace project; this
+repository defines no private kernel/userspace protocol.
 
-## Compatibility status
+## Compatibility
 
-Builds use the nine representative configs in [`targets/groups.yaml`](targets/groups.yaml).
-The mapping in [`targets/models.yaml`](targets/models.yaml) is only a candidate
-selection list. Compatibility status has four meanings:
+Runtime selection uses the exact Keenetic model ID and full OS release. It
+does not guess from SoC, architecture, kernel release, nearby SDK tags, or
+module fingerprints. Every accepted mapping currently starts as
+`experimental`; compilation and ABI audits do not establish hardware
+compatibility. `verified` requires a test on that exact router model.
 
-- `verified`: this module was loaded and exercised on that exact real router model.
-- `compatible`: its kernel group is confirmed, but this model has not had a device run.
-- `experimental`: the mapping is a candidate and compatibility is unproven.
-- `unsupported`: do not install or load the module.
+IPv4 requires the SDK kernel configuration to provide `CONFIG_IP_NF_IPTABLES`.
+IPv6 is built only when `CONFIG_IP6_NF_IPTABLES` is enabled; a missing IPv6
+module is recorded with the build's audited reason.
 
-All current model mappings are `experimental`, including build representatives.
-Same SoC, ELF architecture or `vermagic` does not prove kernel ABI compatibility.
-Do not treat a successful build or matching module fingerprint as hardware evidence.
+## All-tag build and snapshot
 
-`groups.yaml`, `models.yaml` and [`sdk.lock`](sdk.lock) contain JSON, which is a
-valid YAML subset. This lets the build tools validate them using Python's
-standard library without a YAML dependency. Keep model evidence explicit;
-`groups.*.aliases` is empty until this project's hardware evidence supports
-sharing a module.
+The committed [`kernel-matrix.json`](kernel-matrix.json) maps every published
+SDK tag and model to immutable SDK/kernel commits, an exact configuration, and
+an explicit supported or unsupported outcome. Equal full build inputs share a
+content-addressed build key. The SDK-tree identity is intentionally
+conservative: changes to tracked SDK inputs can cause extra builds.
+The matrix uses schema version 1: `sdks[exact_tag].models[exact_model]` points
+to a configuration key in `configurations[sdk_input_key]`. Planning writes
+`out/plan.json` and `out/descriptors/<build_key>.json`.
 
-## Build
+Refresh the matrix locally with Git and Python 3:
 
-Use a Debian/Ubuntu build host with a C/C++ toolchain, make, git, Python 3,
-Perl, awk, flex, bison, gettext, rsync, unzip, `bc`, `gperf`, `attr`, `lzip`,
-`protobuf-c-compiler`, `libhtml-parser-perl`, `libjson-perl`,
-`libxml-libxml-perl`, zlib and ncurses development headers, `jq`, `xxd`,
-`zstd`, and ELF inspection tools (`readelf`, `modinfo`, `nm`). The SDK's pinned
-Linux 4.9 tree is old; GCC 12 is known to avoid the
-`constexpr` parsing failure seen with newer host compilers. SDK toolchains and
-kernel sources are fetched by the SDK during the first build.
+```sh
+python3 scripts/refresh-matrix.py \
+  --sdk https://github.com/keenetic/keenetic-sdk.git \
+  --kernel-git https://github.com/keenetic/kernel-49.git \
+  --repository https://github.com/keenetic/keenetic-sdk.git \
+  --output kernel-matrix.json
+```
+
+This fetches all SDK tags and resolves their pinned kernel source tags. The
+scheduled/manual [matrix workflow](.github/workflows/refresh-matrix.yml)
+regenerates the file, commits only a changed matrix to `main`, then dispatches
+the build workflow with that exact commit SHA.
+
+Descriptor builds require the pinned amd64 Debian/Python/GCC environment in
+`.ci/build-environment.json`. Use the same image locally so the build host and
+reproducibility settings match CI:
+
+```sh
+docker run --rm -it --platform linux/amd64 \
+  -v "$PWD:/workspace" -w /workspace \
+  python:3.14.2-slim-bookworm@sha256:e87711ef5c86aaeaa7031718a69db79d334d94c545c709583f651b8185870941 \
+  bash
+```
+
+Inside the container, install the pinned packages and plan the matrix:
+
+```sh
+.ci/setup-build-env.sh
+python3 scripts/plan-builds.py --matrix kernel-matrix.json \
+  --descriptors out/descriptors --output out/plan.json
+mkdir -p out
+chown -R builder:builder out
+```
+
+Run each shard listed in `out/plan.json` as UID 1000 (`builder`); each key
+uses the isolated, fixed `/build/sdk` checkout in sequence:
+
+```sh
+runuser --user builder -- env JOBS=4 python3 scripts/build-snapshot.py \
+  --plan out/plan.json --descriptors out/descriptors --shard 0 --out out
+```
+
+The plan writes one descriptor per unique build key and divides work into at
+most 256 shards. Each shard builds its keys serially. Build results go under
+`out/builds/<build_key>/` and include modules, checksums, metadata, and audit
+evidence. The current matrix has 3,475 unique configurations, so the initial
+backfill is substantial. Exact builds from a complete published snapshot can
+be reused after the prior manifest, matrix, checksums, provenance, and module
+bytes pass validation. CI caches downloaded SDK archives only, with SDK checksum
+and kernel-commit checks on reuse. Toolchains, configuration, and kernel build
+state are recreated for unmatched keys; staging directories are never cached.
+
+Assemble only after every planned build has succeeded and passed its audit:
+
+```sh
+python3 scripts/assemble-release.py --matrix kernel-matrix.json \
+  --plan out/plan.json --builds-dir out/builds \
+  --output-dir out/snapshots --notes-file out/release-notes.md \
+  --repository https://github.com/maksimkurb/keen-pbr-kmod-keenetic \
+  --reuse-index out/reuse-index
+```
+
+The resulting `modules-<version>-<digest>/` snapshot contains uniquely
+content-addressed IPv4/IPv6 modules, the exact `kernel-matrix.json`, a
+schema-version-2 `manifest.json`, and `SHA256SUMS`. The manifest maps
+`releases[exact_full_OS_release][exact_model]` to status, full build key, and
+per-family filename, SHA256, vermagic, and version. `builds[build_key]` keeps
+the SDK, kernel, configuration, and build-input provenance. It records
+IPv6-unavailable reasons and unsupported mappings explicitly.
+
+The [build workflow](.github/workflows/build.yml) runs lightweight source,
+shell, and runtime-safety checks on pull requests. A push to `main` or manual
+dispatch checks out one exact commit, builds every uncovered configuration,
+and validates complete matrix coverage before automatically publishing the
+content-addressed GitHub release. A retry validates an identical published
+snapshot instead of creating a duplicate. The scheduled/manual
+[matrix workflow](.github/workflows/refresh-matrix.yml) dispatches this build
+for the exact commit after it pushes a changed matrix.
+
+## Runtime selection
+
+`scripts/select-module.py` performs exact model/release/family lookup without
+loading a module. On a router, `--detect` calls `ndmc -c 'show version'` to
+read `hw_id` and the full release. It only normalizes `KN1810` to `KN-1810`.
+Unknown releases/models, unsupported families, invalid artifact hashes, and
+experimental mappings without opt-in return an unavailable result with the
+fallback order `custom -> raw -> mangle`.
+
+For an explicit lookup:
+
+```sh
+python3 scripts/select-module.py --manifest manifest.json \
+  --model KN-1810 --release 4.03.C.2.0-1 --family ipv4
+```
+
+This read-only lookup accepts an untrusted manifest and reports
+`trusted_manifest: false`. To verify the selected bytes against a trusted
+manifest, provide its expected digest and the directory containing snapshot
+modules. Preflight also checks the module's `vermagic` kernel release against
+`uname -r` from `--detect`; for manual lookup, pass that value with
+`--kernel-release`:
+
+```sh
+python3 scripts/select-module.py --manifest manifest.json \
+  --manifest-sha256 "$(sha256sum manifest.json | awk '{print $1}')" \
+  --artifacts modules-<version>-<digest> --detect --family ipv4 \
+  --allow-experimental
+```
+
+The command emits JSON with the selected filename, family SHA256, build key,
+status, contract, and manifest/build provenance. Artifact preflight requires
+`--manifest-sha256`; it checks bytes but does not run `insmod` or establish
+hardware compatibility. Consumers must keep their existing fallback behavior
+when selection is unavailable.
+
+## Local diagnostic builds and legacy smoke tools
+
+The older pinned-SDK helpers remain useful for one-model diagnostics; they are
+separate from the all-tag snapshot pipeline:
 
 ```sh
 ./scripts/prepare-sdk.sh
 ./scripts/build.sh mt7621
-./scripts/build.sh KN-1812
-./scripts/build-all.sh
+./scripts/build.sh --sdk-model KN-1810
 ```
 
-Set `SDK_DIR` to an existing checkout only when its `HEAD` exactly matches
-`sdk.lock`; tracked modifications are rejected. Build artifacts go under
-`out/<group>/`, including module audit data and metadata. Set `OUT_DIR` to
-change the output root. `KEENPBR_PRIORITY_MODE` selects `raw`, `after-raw`,
-`before-mangle`, or `after-mangle`; the default is `after-mangle` (-149). These
-are build-time experiments, not runtime tuning knobs. `scripts/compare-modules.sh`
-can identify binary-equality candidates; it cannot promote model compatibility.
+`scripts/discover-models.py` and `scripts/build-models.py` inspect/build models
+from the single SDK in `sdk.lock`. The old `scripts/generate-manifest.py`
+creates a schema-version-1 nine-group manifest. `smoke-test.sh` and
+`priority-test.sh` also accept only that schema-version-1 manifest; they do not
+consume the new all-tag schema-version-2 snapshot. Keep these scripts for
+local/router diagnostics only, not as the current release or selection path.
 
-The SDK repository ref is pinned to an immutable commit, and the build rejects
-a kernel source checkout whose commit differs from the lock. Each group also
-stores the exact kernel `.config`, `Module.symvers`, and module-source SHA256
-under `out/<group>/audit/` and metadata. SDK download checksums and host
-compiler/toolchain details still affect bit-for-bit reproducibility. Inspect
-each output's metadata and ABI audit before using it.
-
-## Table behavior and rule limits
-
-The table is named `keenpbr` and runs only at PREROUTING. It is separate from
-the vendor `mangle` table, so vendor ruleset rebuilds do not delete it. Rules
-still use standard tools such as `iptables -t keenpbr` and
-`ip6tables -t keenpbr`.
-
-Pinned Linux 4.9 extensions allow MARK/CONNMARK targets, `-m set`, `-m dscp`,
-`-m multiport`, and conntrack matches in this table. The lowercase `-m dscp`
-match is supported. The uppercase `-j DSCP` and `-j TOS` targets, and
-`-j SET --map-set`, require the `mangle` table and are not supported in
-`keenpbr`. At `raw` priority, conntrack has not run yet; conntrack matching is
-not available there. The selected priority is recorded in build metadata and
-the release manifest.
-
-The default hook priority is `NF_IP_PRI_MANGLE + 1` (-149), intended to run
-after Keenetic mangle processing and before DNAT (-100). Actual packet order
-and interaction with Connection Policy, hardware acceleration and firmware
-must be checked on a real router before calling a model verified. Use the
-documented hardware priority test; local OUTPUT traffic does not establish
-PREROUTING order.
-
-The module release version is independent of the `keen-pbr` userspace version.
-The separate table contract is ABI 1; module releases can change without an
-ABI change. The loaded module exposes its version and read-only priority and
-ABI parameters at `/sys/module/iptable_keenpbr/version`,
-`/sys/module/iptable_keenpbr/parameters/priority`, and
-`/sys/module/iptable_keenpbr/parameters/table_abi` (use `ip6table_keenpbr`
-for IPv6). The same build metadata is available through `modinfo -F version`,
-`modinfo -F keenpbr_priority`, and `modinfo -F keenpbr_table_abi`.
-
-## Release artifacts
-
-The strict release generator emits one file per supported family and group:
-
-```text
-iptable_keenpbr-mt7621.ko
-ip6table_keenpbr-mt7621.ko
-manifest.json
-SHA256SUMS
-```
-
-The manifest records group/model evidence, SDK and kernel identity, module
-hashes, vermagic, module version, priority and table ABI. `SHA256SUMS` covers
-the modules and manifest. Release CI builds the complete nine-group matrix;
-GitHub Releases are created only from a version-matching `v*` tag. No release
-or model is hardware verified until the corresponding router test is recorded.
-
-After `build-all.sh`, generate the strict release directory with:
-
-```sh
-python3 scripts/generate-manifest.py
-# Writes out/release/ by default; explicit form:
-python3 scripts/generate-manifest.py --out out --release-dir out/release
-```
-
-The generator requires the complete matrix and matching source, SDK, kernel,
-version, priority, module and audit hashes. A preview with only completed
-groups requires the explicit `--partial` option and is not a release.
-
-The final-source local build completed 9/9 kernel groups against SDK commit
-`5ff3bfda8b7f38004f9fd6d4effc6bdaedf01e05` and kernel commit
-`113cc622b3c48876927ae3c8db2e83fef4505fbf`, with source SHA256
-`7dc1a6cce0b0a8455e7421429d4627cf4cf87e7f79576818d69445bee630fc4e`.
-It produced 18 modules at the default after-mangle priority (-149); the strict
-manifest check passed and all 19 `SHA256SUMS` entries verified. This is build
-evidence only: current model mappings remain experimental, GitHub Actions has
-not been run remotely, and no release has been published.
-
-Binary comparison found equal fingerprints for the three ARM64 groups
-`mt7988`/`mt7622`/`mt7981`, for `mt7621`/`en7528`, and for `en7512`/`en7516`.
-These are candidates only; release artifacts and model mappings remain
-separate per matrix group. A matching fingerprint does not establish ABI or
-hardware compatibility.
-
-The final-source KN-1810 raw-priority PoC also built both modules at -300 and
-passed its partial manifest and checksum checks. Keep this experiment in a
-separate output directory so its priority provenance cannot mix with the
-default release build:
-
-```sh
-OUT_DIR=out/priority-raw KEENPBR_PRIORITY_MODE=raw ./scripts/build.sh mt7621
-python3 scripts/generate-manifest.py --out out/priority-raw \
-  --release-dir out/priority-raw/release --partial
-```
-
-This creates the isolated two-module preview at `out/priority-raw/release/`;
-it does not change `out/release/`. The raw variant has not been tested on
-hardware.
-
-## Loading and hardware checks
-
-Loading modules is a privileged router operation. The smoke-test helper checks
-for an exact model mapping and requires explicit opt-in for experimental
-models. It adds only its own test chains/rules and removes only those rules;
-it must not flush the vendor table or unload a module owned by another
-component. If no known model/group is available, userspace should keep using
-its existing RAW/mangle backend. This repository does not implement or change
-that userspace fallback.
-
-On a real Keenetic, `smoke-test.sh` takes a release manifest and its SHA256,
-model, family, module path, ingress interface, source address, TCP port, and
-reserved mark/mask. It requires `--allow-experimental` for current mappings.
-It loads the module and waits for an externally sent packet to increment its
-scoped rule counter. For example, after copying the manifest and matching
-module to the router:
+For a legacy router check, copy a schema-version-1 manifest and its matching
+group module to the router, then run the helpers with an externally generated
+ingress packet. Reserve the mark bits used by the test:
 
 ```sh
 sh scripts/smoke-test.sh manifest.json "$(sha256sum manifest.json | awk '{print $1}')" \
   KN-1810 ipv4 iptable_keenpbr-mt7621.ko eth0 198.51.100.2 443 \
   0x10000000 0x30000000 --allow-experimental
-```
-
-Replace the example ingress interface and source address with values for the
-router and reserve the selected mark bits for this test.
-
-`priority-test.sh` runs after the smoke test has loaded the same module. It
-adds scoped temporary marks in `mangle` and `keenpbr`, sends external ingress
-traffic through the router to a forwarded host, then checks the later filter
-hook's observed mark. Reserve the supplied mask bits and use a real test path;
-the helper removes only its own rules. For the default after-mangle priority,
-the final mark should be `MARK_B`:
-
-```sh
 sh scripts/priority-test.sh manifest.json "$(sha256sum manifest.json | awk '{print $1}')" \
   KN-1810 ipv4 iptable_keenpbr-mt7621.ko eth0 198.51.100.2 443 \
   0x30000000 0x10000000 0x20000000 --allow-experimental
 ```
 
-Send a TCP packet from that source through `eth0` to a forwarded host on port
-443; replace the example interface and source with the real ingress values.
+Replace the interface and source with the router's ingress values and send a
+TCP packet through the router to a forwarded host on port 443. These checks
+load a module and test rules; they do not change vendor rules or promote any
+model beyond the exact hardware evidence collected.
 
-Do not infer router compatibility from QEMU: no matching Keenetic kernel image
-or emulation setup is provided here. Hardware checks remain the source of
-`verified` status.
+`priority-test.sh` checks PREROUTING order by observing the mark at a later
+filter hook; local OUTPUT traffic cannot establish that order. These checks can
+support `verified` status only for the exact tested model. QEMU is not evidence
+here because no matching Keenetic kernel image or emulation setup is provided.
+
+## Table behavior and rule limits
+
+The table is named `keenpbr`, separate from the vendor `mangle` table. Use
+standard tools such as `iptables -t keenpbr` and `ip6tables -t keenpbr`.
+Default priority is `NF_IP_PRI_MANGLE + 1` (-149), after Keenetic mangle
+processing and before DNAT (-100), subject to real-router confirmation.
+
+Pinned Linux 4.9 extensions allow MARK/CONNMARK targets, `-m set`, `-m dscp`,
+`-m multiport`, and conntrack matches. The uppercase `-j DSCP`, `-j TOS`, and
+`-j SET --map-set` targets require `mangle` and are unavailable in `keenpbr`.
+At raw priority conntrack has not run, so conntrack matching is unavailable.
+
+Module version is independent of the `keen-pbr` userspace version. Table ABI is
+1. Read-only priority and ABI parameters are available under
+`/sys/module/iptable_keenpbr/parameters/` (use `ip6table_keenpbr` for IPv6); the
+same metadata is available through `modinfo`.
 
 ## References
 
@@ -209,9 +217,9 @@ or emulation setup is provided here. Hardware checks remain the source of
   [IPv6 raw table](https://github.com/keenetic/kernel-49/blob/4.9.337-119/net/ipv6/netfilter/ip6table_raw.c),
   [IPv4 iptables core](https://github.com/keenetic/kernel-49/blob/4.9.337-119/net/ipv4/netfilter/ip_tables.c),
   [IPv6 iptables core](https://github.com/keenetic/kernel-49/blob/4.9.337-119/net/ipv6/netfilter/ip6_tables.c),
-  [x_tables core](https://github.com/keenetic/kernel-49/blob/4.9.337-119/net/netfilter/x_tables.c).
-- [Linux 4.9 hook priorities](https://github.com/keenetic/kernel-49/blob/4.9.337-119/include/uapi/linux/netfilter_ipv4.h)
-  and extension implementations for [MARK](https://github.com/keenetic/kernel-49/blob/4.9.337-119/net/netfilter/xt_mark.c),
+  and [x_tables core](https://github.com/keenetic/kernel-49/blob/4.9.337-119/net/netfilter/x_tables.c).
+- Linux 4.9 [hook priorities](https://github.com/keenetic/kernel-49/blob/4.9.337-119/include/uapi/linux/netfilter_ipv4.h),
+  [MARK](https://github.com/keenetic/kernel-49/blob/4.9.337-119/net/netfilter/xt_mark.c),
   [set](https://github.com/keenetic/kernel-49/blob/4.9.337-119/net/netfilter/xt_set.c),
   [DSCP match](https://github.com/keenetic/kernel-49/blob/4.9.337-119/net/netfilter/xt_dscp.c),
   [DSCP target](https://github.com/keenetic/kernel-49/blob/4.9.337-119/net/netfilter/xt_DSCP.c),

@@ -43,6 +43,11 @@ def read_group(group, cfg, out):
         fail(f"{group}: invalid source provenance")
     if meta.get("priority_mode") not in PRIORITIES or type(meta.get("priority")) is not int or meta["priority"] != PRIORITIES[meta["priority_mode"]]:
         fail(f"{group}: invalid priority metadata")
+    if meta.get("mips_calls") not in {"sdk", "long"}:
+        fail(f"{group}: invalid MIPS call policy")
+    expected_cflags = "-mlong-calls" if cfg["arch"] in {"mips", "mipsel"} and meta["mips_calls"] == "long" else ""
+    if meta.get("module_cflags") != expected_cflags:
+        fail(f"{group}: effective module CFLAGS do not match architecture/call policy")
     sums_path = folder / "SHA256SUMS"
     if not sums_path.is_file(): fail(f"{group}: SHA256SUMS missing")
     sums = {}
@@ -107,7 +112,7 @@ def build_release(out, release, partial):
     if not partial and set(metadata) != set(groups): fail("full release is missing one or more matrix groups")
     lock = json.loads((ROOT / "sdk.lock").read_text())
     repo_version = (ROOT / "VERSION").read_text().strip()
-    common = ("sdk_ref", "kernel_ref", "kernel_release", "source_sha256", "version", "kernel", "priority_mode", "priority", "table_abi")
+    common = ("sdk_ref", "kernel_ref", "kernel_release", "source_sha256", "version", "kernel", "priority_mode", "priority", "table_abi", "mips_calls")
     provenance = {key: metadata[next(iter(metadata))][key] for key in common}
     if provenance["sdk_ref"] != lock["ref"] or provenance["kernel_ref"] != lock["kernel_ref"]:
         fail("build metadata does not match pinned SDK/kernel revisions")
@@ -153,6 +158,7 @@ def build_release(out, release, partial):
                 "module_symvers_sha256": meta["module_symvers_sha256"],
                 "source_sha256": meta["source_sha256"],
                 "priority_mode": meta["priority_mode"], "priority": meta["priority"],
+                "mips_calls": meta["mips_calls"], "module_cflags": meta["module_cflags"],
                 "modules": entries,
             }
         release_models = {model: {**item, "artifact_available": item["group"] in release_groups} for model, item in models.items()}
@@ -160,7 +166,7 @@ def build_release(out, release, partial):
             "schema_version": 1,
             "version": provenance["version"],
             "sdk": {"repository": lock["repository"], "ref": provenance["sdk_ref"], "kernel_ref": provenance["kernel_ref"], "kernel": provenance["kernel"], "kernel_release": provenance["kernel_release"]},
-            "contract": {"table_abi": provenance["table_abi"], "table": "keenpbr", "hook": "PREROUTING", "priority_mode": provenance["priority_mode"], "priority": provenance["priority"], "partial": partial},
+            "contract": {"table_abi": provenance["table_abi"], "table": "keenpbr", "hook": "PREROUTING", "priority_mode": provenance["priority_mode"], "priority": provenance["priority"], "mips_calls": provenance["mips_calls"], "partial": partial},
             "groups": release_groups, "models": release_models,
         }
         (stage / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "platform": "linux/amd64",
+  "id": "debian-bookworm-snapshot-20261001",
+  "image": "python:3.14.2-slim-bookworm@sha256:e87711ef5c86aaeaa7031718a69db79d334d94c545c709583f651b8185870941",
+  "apt_snapshot": "20261001T000000Z",
+  "sdk_path": "/build/sdk",
+  "build": {
+    "timezone": "UTC",
+    "locale": "C",
+    "source_date_epoch": 1704067200,
+    "kbuild_build_timestamp": "2024-01-01 00:00:00 UTC",
+    "kbuild_build_user": "keenpbr-builder",
+    "kbuild_build_host": "keenpbr-build",
+    "host_cc": "gcc-12",
+    "host_cxx": "g++-12"
+  },
+  "packages": [
+    "attr", "autoconf", "automake", "bc", "binutils", "bison", "build-essential", "curl", "file", "flex",
+    "gawk", "gcc-12", "gettext", "g++-12", "git", "gperf", "help2man", "jq",
+    "kmod", "libhtml-parser-perl", "libjson-perl", "libncurses-dev", "libssl-dev",
+    "libxml-libxml-perl", "locales", "lzip", "pkg-config", "protobuf-c-compiler", "rsync", "shellcheck",
+    "passwd", "subversion", "swig", "unzip", "wget", "xxd", "xz-utils", "zlib1g-dev", "zstd"
+  ]
+}

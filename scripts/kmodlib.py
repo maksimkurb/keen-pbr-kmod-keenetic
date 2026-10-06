@@ -182,7 +182,7 @@ def fingerprint(path):
         if match:
             idx, name, typ, size, flags, align = match.groups()
             sections[idx] = name
-            if "A" in flags and typ in {"PROGBITS", "NOBITS"}:
+            if "A" in flags and typ not in {"NOTE", "NULL"}:
                 sections[name] = (typ, int(size, 16), flags, align)
     elf_flags = re.search(r"^\s*Flags:\s*(.*)$", elf_header, re.M)
     pieces = [repr(arch), "elf-flags=" + (elf_flags.group(1).strip() if elf_flags else "")]

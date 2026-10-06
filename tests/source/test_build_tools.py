@@ -71,6 +71,7 @@ Relocation section '.rela.debug_info' at offset 0x78 contains 1 entry:
             "group": group, "representative": representative, "arch": "mipsel", "kernel": "4.9-ndm", "kernel_release": "4.9-test",
             "kernel_ref": lock["kernel_ref"], "sdk_ref": lock["ref"], "version": version,
             "priority_mode": "after-mangle", "priority": -149, "table_abi": 1,
+            "mips_calls": "sdk", "module_cflags": "",
             "source_sha256": kmodlib.source_sha256(ROOT),
             "modules": {"ipv4": {"file": module.name, "sha256": digest(module), "size": module.stat().st_size,
                 "vermagic": "4.9-test SMP", "version": version, "undefined_symbols": ["kernel_symbol"], "fingerprint": "c" * 64,

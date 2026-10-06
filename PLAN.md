@@ -1,83 +1,128 @@
-# keenpbr-kmod implementation plan
+# Финальный план keen-pbr-kmod
 
-Planning: Sol. Implementation: Luna. Every task uses ToDo/WIP/Done; live evidence is in STATUS.md.
+Планирование: **Sol**. Реализация: **Luna**, интеграция и проверки — основной агент. Состояния: ToDo / WIP / Done.
 
-## Scope and contract
+Цель: автоматически собирать минимальное количество модулей для всех опубликованных Keenetic SDK и выбирать артефакт по **точной модели + полному релизу KeeneticOS**.
 
-Build standalone GPL-2.0 Linux 4.9 Keenetic modules with no policy engine or private userspace protocol. Separate IPv4/IPv6 modules expose legacy xtables table `keenpbr`, only PREROUTING, independent unload and per-network-namespace lifecycle. Default priority -149 (mangle + 1), build-time modes raw (-300), after-raw (-299), before-mangle (-151), after-mangle (-149). Record exact numeric priority, version and API contract 1 in metadata/manifest; raw is a hardware experiment, not a production inference.
+```text
+model + exact OS release
+  -> pinned SDK/model configuration
+  -> complete build-input key
+  -> content-addressed IPv4/IPv6 .ko
+```
 
-Do not modify keen-pbr userspace or publish remotely in this task. Unknown models and experimental mappings must not acquire verified status from compilation, ELF equality or vermagic. Hardware checks remain ToDo until actual evidence exists.
+## Что готово — Done
 
-## Shared implementation interfaces
+- Минимальные IPv4/IPv6-модули, per-namespace context, сериализация lazy table registration, errno/logs и аудит provider exports.
+- kernel-matrix.json: 123 SDK-тега, 4 976 поддерживаемых tag/model пар, 3 475 полных SDK input identities и 8 явно unsupported KAP-пар; 59 kernel commits, 17 upstream versions.
+- Оба workflows: refresh/commit/dispatch и unique-key build/reuse/assembly/publication. Release содержит exact mapping, provenance, уникальные .ko, checksums и details-таблицы.
+- Exact runtime selector с проверкой доверенного manifest, SHA256 и kernel release; unknown модели/релизы получают unavailable/fallback.
+- 36 host tests, actionlint, shellcheck и runtime-safety прошли. Настоящие MIPS-сборки SDK 4.03/5.00 и ARM64-сборка SDK 5.00 прошли полный аудит.
+- Повторная MIPS-сборка после kernel clean дала байт-в-байт одинаковые IPv4/IPv6 .ko, kernel config и Module.symvers.
+- Локальный snapshot на трёх настоящих сборках: 10 точных runtime selections, импорт всех шести модулей из prior snapshot и байт-в-байт одинаковый повторный snapshot. SDK 5.00.C.12.0-0/-1 используют один build key.
 
-Use JSON syntax in `targets/groups.yaml`, `targets/models.yaml` and `sdk.lock`: JSON is valid YAML and Python stdlib json avoids a new dependency. README must explain the format.
+Реализация автоматизации завершена и проверена локально. Полный initial backfill 3 475 keys, удалённый GitHub workflow/release и hardware verification ещё не выполнялись. Локальный validation snapshot покрывает только явно выбранный subset и не является полным release.
 
-`sdk.lock`: `{"repository":"https://github.com/keenetic/keenetic-sdk.git","ref":"5ff3bfda8b7f38004f9fd6d4effc6bdaedf01e05","branch":"4.03","kernel":"4.9-ndm"}`. This immutable 4.03 revision contains all nine representative configs; main does not. Existing SDK checkout must match ref, reject mismatches; local generated build files are allowed, tracked SDK changes must not silently alter provenance. No automatic kernel ABI patches.
+## Итоговые контракты
 
-`groups.yaml`: `{"groups": {"mt7621": {"representative":"KN-1810","arch":"mipsel","aliases":[],"ipv6":true}, ...}}`. Nine groups: mt7988 KN-1812 aarch64; mt7622 KN-1811 aarch64; mt7981 KN-3811 aarch64; mt7621 KN-1810 mipsel; mt7628 KN-1212 mipsel; mt7621-highmem KN-1011 mipsel; en7528 KN-1912 mipsel; en7512 KN-2010 mips; en7516 KN-2112 mips. `models.yaml`: `{"models": {"KN-1810": {"group":"mt7621","status":"experimental","evidence":"SDK representative; hardware validation pending"}, ...}}`. Include supplied alias candidates as experimental, distinct from confirmed aliases; group aliases must be empty unless compatibility evidence specifically supports this project. Validate all references/status values and unique models.
+### Модуль
 
-Public commands:
+- Раздельные IPv4/IPv6 .ko; legacy xtables table keenpbr; только PREROUTING; default priority -149, VERSION и table ABI 1 в metadata.
+- Автоматический release matrix использует один priority: after-mangle -149. Существующие локальные build-time modes сохраняются в input key, но не умножают автоматическую матрицу и не образуют отдельный экспериментальный этап. Без kernel patches, AUTOLOAD и собственного policy engine.
+- Правила исполняет xtables core. Не добавляем собственный разбор skb, routing/conntrack и чтение внутренних полей xt_table.
+- Для packet hook используем собственный per-namespace context через nf_hook_ops.priv; операции не разделяют изменяемый priv между namespaces.
+- В обоих закреплённых register_table путях указатель таблицы публикуется до регистрации hooks; priv автоматически не заполняется. Сохраняем lifecycle, порядок teardown и полный unwind.
+- Обычные ошибки allocation/registration: errno и stage-specific log; userspace получает ошибку загрузки. Универсально перехватить ABI-induced OOPS нельзя.
+- Источники экспортируют нужный API, но фактическая конфигурация должна включать IPv4 provider; IPv6 provider необязателен. Проверяем эффективную конфигурацию и built artifacts.
 
-- `scripts/prepare-sdk.sh` uses `SDK_DIR` or repository `.cache/keenetic-sdk`, checks exact lock and clones/checks out only missing SDK.
-- `scripts/build.sh <group|KN-model>` uses known mapping only; `SDK_DIR`, `OUT_DIR` default repo/out, `JOBS` bounded default, `KEENPBR_PRIORITY_MODE` default after-mangle. Configure representative even when alias used; experimental mapping is a build request, never runtime authorization.
-- Recipe installed as `SDK/package/kernel/keenpbr-table/Makefile`, `src/`, `LICENSE`, `VERSION`. `CONFIG_PACKAGE_kmod-keenpbr-table=m`, `make defconfig`, `make target/linux/compile`, clean/recompile package with numeric `KEENPBR_PRIORITY` and `KEENPBR_VERSION` arguments. Use SDK KERNEL_MAKEOPTS. No AUTOLOAD. IPv6 optional when actual CONFIG_IP6_NF_IPTABLES absent; IPv4 must remain buildable.
-- `scripts/inspect-module.sh <module.ko> [audit-dir]`: saves modinfo, ELF header/symbols/versions and undefined-symbol output, fails missing essential audit tools. Cross nm is needed for MIPS; readelf is arch-independent. Handle __versions absence explicitly, not as ignored errors.
-- `scripts/build-all.sh`: nine matrix entries from config, continue collecting failures, nonzero overall failure, write `OUT_DIR/build-report.txt`.
-- `scripts/compare-modules.sh [OUT_DIR]`: candidate equality only; fingerprint allocatable executable/data sections, relocation/symbol identity, normalized modinfo, undefined symbols, architecture, endian, vermagic and __versions. Whole file SHA retained separately. Do not claim ABI compatibility or update mappings.
-- `scripts/generate-manifest.py [--out OUT_DIR] [--release-dir PATH]`: output flattened `iptable_keenpbr-<group>.ko`, IPv6 counterpart when supported, manifest.json, SHA256SUMS. Default release-dir `OUT_DIR/release`. Fail missing matrix outputs, stale hashes, mixed SDK/version/priority/config provenance, unknown groups and unsafe names. Partial preview may be supported explicitly but release default requires all groups.
+### Build identity и воспроизводимость
 
-Build output `OUT_DIR/<group>/iptable_keenpbr.ko`, optional ip6table counterpart, metadata.json, audit/ and SHA256SUMS. Metadata minimum: `group`, `representative`, `arch`, `kernel`, `sdk_ref`, `version`, `priority_mode`, `priority`, `table_abi` (1), `kernel_config_sha256`, `module_symvers_sha256`, `modules`. Modules mapping keys `ipv4`/`ipv6`; each object has `file`, `sha256`, `size`, `vermagic`, `version`, `undefined_symbols`, `fingerprint`; IPv6 absence documented explicitly. Generation must validate bytes and emitted filenames. Release manifest includes `schema_version`, `version`, `sdk`, `contract`, `groups`, `models`, truthful compatibility/evidence. SHA256SUMS covers modules and manifest, never itself.
+Полный ключ включает kernel source commit, SDK tree с recipes/patches/configuration и toolchain download recipes, module sources/VERSION, ABI/priority, effective flags, build/audit scripts и фиксированное окружение. Наблюдаемые SHA256 скачанных архивов, effective kernel config и Module.symvers сохраняются в provenance и входят в snapshot digest.
 
-## Tasks and acceptance criteria
+SDK/OS tag и SDK commit — lookup/provenance. README-only изменение не меняет доказанно те же build inputs. Если зависимости нельзя установить полностью, применяем консервативную identity полного SDK tree с явным ограничением: возможны лишние сборки.
 
-| ID | Status | Work | Acceptance |
-|---|---|---|---|
-| P01 | Done | Primary-source research, pinned SDK and API audit | Exact reference URLs; actual pinned kernel source APIs checked, extension restrictions recorded |
-| P02 | Done | Plan and status documents, shared interfaces | PLAN.md and STATUS.md written before Luna implementation |
-| K01 | Done | Minimal PREROUTING-only IPv4/IPv6 kernel code | net_generic state, pernet init/exit, table/hook setup, complete init failure cleanup, no netns layout changes |
-| K02 | Done | VERSION, common build contract and SDK KernelPackage | GPL provenance retained, separate .ko files, compile-time modes, IPv6 optional, no auto-load |
-| B01 | Done | Pinned SDK preparation and single-group build | Wrong ref/unknown group rejected; only actual fresh artifacts; kernel config/Symvers evidence |
-| B02 | Done | ABI inspection and candidate binary comparison | ELF class/endian/arch checked; vermagic/kernel/module version checked; meaningful sections and relocations hashed |
-| B03 | Done | Full matrix orchestration and release generation | All groups reported; errors propagated; strict safe manifest/model mapping and SHA256SUMS |
-| T01 | Done | Nine groups and initial model status | No unsupported compatibility promotion; candidate aliases clearly experimental |
-| T02 | Done | Host checks and regression tests | Five stdlib tests, runtime identity refusal, shellcheck and syntax checks |
-| T03 | Done | Real pinned SDK KN-1810 build | Final-source IPv4/IPv6 modules compiled and audited at priority -149; see out/build-report.txt |
-| T04 | Done | Real pinned SDK ARM64 representative build | KN-1812 IPv4/IPv6 compile and ABI inspection complete; no hardware claim |
-| T05 | Done | Final-source full nine-group SDK matrix build | 9/9 groups, 18 modules, strict 20-asset manifest, matching source/kernel pins and verified SHA256SUMS |
-| C01 | Done | PR CI: source checks + two representative builds | KN-1810 and KN-1812 dynamically derived; immutable SDK cache key and no release privileges |
-| C02 | Done | Full nightly/release CI and aggregation | Nine group matrix from config; isolated SDK build cache; exact artifacts; tag VERSION validation; release only on authorized tag event |
-| H01 | Done | Real-device smoke-test tooling | IPv4/IPv6 chain/restore/MARK/ipset/dscp/ports/counters checks; narrow cleanup traps; exact model/artifact validation |
-| H02 | Done | Real-device priority experiment tooling | External ingress packet counter evidence; scoped mangle and keenpbr marks; no local OUTPUT assumption |
-| H03 | ToDo | Hardware verification and compatibility promotion | Actual model, firmware, module SHA, priority, packet evidence recorded; hardware inaccessible means pending |
-| D01 | Done | README, license, references, build/runtime instructions | Clearly list extension table restrictions, kernel/firmware caveats, hardware limits and userspace integration contract |
-| V01 | Done | Final verification and status reconciliation | Host tests, runtime refusal, lint/syntax, manifest and checksum checks pass; hardware remains pending |
+Выбираем и фиксируем MIPS call policy как параметр итоговой сборки; текущее различие sdk/long не превращаем в отдельный экспериментальный pipeline. Изменение policy инвалидирует reuse.
 
-## Runtime and semantic pitfalls
+Фиксируем compiler/binutils, sources/headers/generated config, paths, time, build user/host и поддерживаемые Linux 4.9 SOURCE_DATE_EPOCH/KBUILD controls. Воспроизводимость подтверждаем двумя clean builds, а не обещаем по SDK-тегу.
 
-Upstream raw uses fields in `net->ipv4`/`net->ipv6`; external modules cannot add these. Use `pernet_operations.id/.size`, `net_generic()` and family-specific table pointer state. The hook callback obtains the current namespace from state->net and reads its own net_generic table pointer; no shared ops.priv table pointer is needed. Read pinned ipt_register_table/ip6t_register_table: signatures and hook registration ownership may differ from newer kernels. No custom table global pointer shared across namespaces.
+### Matrix и workflows
 
-Legacy extensions enforce permitted table names in xt_check_target. Lowercase `-m dscp` match works on any table; uppercase `-j DSCP`/`TOS` targets are mangle-only in upstream 4.9. MARK, connmark/CONNMARK, set match, multiport and conntrack need pinned-source verification. Test dscp match used by keen-pbr; explicitly document unsupported mangle-only targets. Do not disguise keenpbr as mangle or patch SDK extension restrictions. Sources mention raw without conntrack; priority modes change conntrack availability.
+kernel-matrix.json детерминированно перечисляет все опубликованные теги и модельные конфигурации: exact tag/series/model, immutable peeled SDK/kernel commits, configuration/toolchain identities, support outcome и SDK input identity.
 
-A priority test must send packets from outside the router. Add scoped rules for a supplied source/interface/port, choose unused mark bits, observe PREROUTING after keenpbr, assert counters and mark B, remove exact temporary rules only. Connection Policy/mangle rebuild and hardware acceleration can alter behavior; mark those hardware-only tests pending. Smoke test must never flush existing table/policy or unload a module preloaded by another owner. Build-time/module sanity and known model checks precede explicit test loading; experimental requires operator opt-in. No remote router mutation in this implementation session.
+Неизвестные parser/config layouts, архитектуры и kernel families получают явный unsupported outcome либо ошибку discovery; значения не угадываем. Volatile timestamps в semantic JSON отсутствуют.
 
-## Source references
+**Refresh Keenetic SDK Matrix:** scheduled + manual; fetch all tags; сравнение с актуальным main; commit только изменённого kernel-matrix.json. Параллельные writers сериализуются; при изменившемся main regenerate/recompare без force push.
 
-- [keen-pbr backend](https://github.com/maksimkurb/keen-pbr), [RAW introduction](https://github.com/maksimkurb/keen-pbr/commit/e2674cc79b18f88b4c84e6bfc3a14b90712e3eb0).
-- [Pinned SDK 4.03](https://github.com/keenetic/keenetic-sdk/tree/5ff3bfda8b7f38004f9fd6d4effc6bdaedf01e05), configure.sh, include/kernel.mk, include/kernel-defaults.mk and model ndwrt.config.
-- [AWG matrix](https://github.com/hoaxisr/awg-manager/blob/9c3dab0b4dd84710e4e21c979fab5cbf75e5eb01/scripts/build-kmods.sh), [KernelPackage](https://github.com/hoaxisr/awg-manager/blob/9c3dab0b4dd84710e4e21c979fab5cbf75e5eb01/kmod/awg-proxy/package/Makefile), [ABI evidence](https://github.com/hoaxisr/awg-manager/blob/9c3dab0b4dd84710e4e21c979fab5cbf75e5eb01/prebuilt/kmod/README.md), loader.go, soc.go.
-- [IPv4 raw](https://github.com/torvalds/linux/blob/v4.9/net/ipv4/netfilter/iptable_raw.c), [IPv6 raw](https://github.com/torvalds/linux/blob/v4.9/net/ipv6/netfilter/ip6table_raw.c), [IPv4 core](https://github.com/torvalds/linux/blob/v4.9/net/ipv4/netfilter/ip_tables.c), [IPv6 core](https://github.com/torvalds/linux/blob/v4.9/net/ipv6/netfilter/ip6_tables.c), [xtables core](https://github.com/torvalds/linux/blob/v4.9/net/netfilter/x_tables.c).
-- Linux 4.9 mangle tables, IPv4/IPv6 priority headers and xt_mark/xt_set/xt_dscp/xt_DSCP/xt_multiport/xt_conntrack/xt_connmark verify semantics, not binary compatibility.
+После успешного bot push явно dispatch Build на main с input source_ref=<committed SHA>. Сам workflow_dispatch ref — branch/tag; checkout сборки — точный source_ref. Это обход штатного подавления push-trigger от GITHUB_TOKEN без PAT.
 
-Primary source snapshots available locally in `/tmp/keenpbr-references`; pinned SDK kernel investigation results will be added below. QEMU cannot establish proprietary Keenetic kernel ABI/hardware compatibility; add a documented optional test path only if a matching runnable image becomes available.
+**Build kernel modules:** matrix changes на main, relevant module/build/contract/workflow inputs и manual; refresh также dispatches его явно. Повторный запуск того же snapshot не публикует дубль.
 
-## Completed pinned-kernel API audit
+Планировщик сохраняет все model/tag consumers, но строит один раз каждую доказанно одинаковую полную input identity. Один Linux version или одинаковая config file недостаточны.
 
-SDK 4.03 points to [keenetic/kernel-49 tag 4.9.337-119](https://github.com/keenetic/kernel-49/tree/4.9.337-119), currently resolving to immutable commit `113cc622b3c48876927ae3c8db2e83fef4505fbf`. Its actual ip_tables.c, ip6_tables.c, raw tables, x_tables.c/headers, MARK/CONNMARK/dscp/DSCP/set extensions were downloaded and read under `/tmp/keenpbr-references/keenetic-*`.
+Каждая concurrent build получает изолированный SDK и per-build pinned descriptor; global single-SDK provenance заменяется per-build/per-artifact данными. SDK .config не разделяется между concurrent jobs.
 
-- `ipt_register_table(net, template, replace, hook_ops, &table_pointer)` returns int and writes the pointer before registering hooks; matching unregister takes net, table pointer, ops. IPv6 has corresponding five-argument registration. `ipt_do_table(skb, state, table_pointer)` has three arguments.
-- `xt_hook_ops_alloc()` derives family, hook mask and priority from the template; hook callbacks can use `net_generic(state->net, pernet_id)` with no changes to the kernel netns structures. Use `.init` for eager namespace registration plus template `.table_init` for core compatibility; registration helper should return success if the namespace table is already present. On unregister, hooks cease before freeing the table.
-- Keenetic raw code differs from upstream: separate raw/raw_out table templates and priorities. Do not copy the raw_out behavior; keenpbr is exclusively PREROUTING.
-- Pinned MARK and CONNMARK have no table-name restriction. `-m dscp` and `-m set` also have none. `-j DSCP` and `-j TOS` require mangle. `SET --map-set` explicitly requires mangle even though add/delete operations do not. Document these limits accurately; no extension ABI patch is justified.
-- SDK pin fixes build recipes but the recipes download a kernel tag and prebuilt toolchain release. Record kernel commit/tag and archive SHA plus toolchain identity if obtainable; do not claim bit-for-bit reproducibility from SDK ref alone. Source download validation must fail checksum mismatches when recorded. Hardware firmware version compatibility remains unproven.
+Bounded shards содержат последовательные builds и не превышают 256 matrix jobs; одновременно работают не более восьми jobs. Actions cache хранит только downloaded archives с последующими SDK checksum/kernel commit checks. Toolchain, .config, staging_dir и kernel build state создаются заново. Durable reuse берётся из release artifacts после проверки полного key, provenance, audit contract и SHA256.
 
-Parent successfully configured KN-1810 in a Debian container using the pinned SDK and started kernel compilation independently of module source. This is configuration evidence only; compilation and hardware tasks retain their own status.
+### Release
+
+После аудита deduplicate реальные байты независимо для IPv4/IPv6 по точному SHA256; имена family/hash. Candidate fingerprints не являются обязательным этапом выпуска или основанием пропускать недоказанную сборку.
+
+Каждый release — self-contained immutable snapshot:
+
+- Все уникальные audited .ko.
+- Точная committed kernel-matrix.json.
+- manifest.json: exact release/model -> per-family file/SHA256/build key/provenance/status.
+- SHA256SUMS для модулей и обоих JSON.
+
+Snapshot tag использует digest matrix + complete module/build inputs и не зависит только от module VERSION. Предыдущий semver workflow адаптируется в этот путь; параллельный legacy publisher не сохраняем.
+
+Перед завершением реализации проверяем targeted regressions, clean-build reproducibility и cross-SDK сборки F08. В рабочем workflow публикация автоматическая: source/runtime checks, успешные сборки всех принятых input keys (включая initial backfill), полное покрытие и audited snapshot являются обязательными gates. Затем создаётся draft, проверяются все uploaded assets/checksums и release публикуется. Failed builds блокируют публикацию и не получают success links; явно unsupported случаи видны с причинами. В текущей локальной реализации GitHub workflow/release удалённо не запускаем.
+
+Notes: details по SDK series, таблица Model | SDK series | полные SDK versions | IPv4 | IPv6 | Status. Версии с одинаковыми mappings объединяются; одинаковые файлы имеют одинаковые ссылки на assets текущего release.
+
+До публикации проверяем лимит 1000 assets и реальный размер notes. Превышение asset limit — явная ошибка и предложение разделить releases по series, без скрытого удаления файлов/замены .ko архивом. Полные notes attachment добавляем только при необходимости.
+
+### Runtime selection и последующая интеграция
+
+Перед загрузкой ndmc show version даёт hw_id и полный release. Их exact mapping выбирает SDK/model build key и per-family artifact; проверяем скачанные байты по trusted manifest SHA256. uname-r — sanity check; BSP discriminator добавляется только при подтверждённой необходимости.
+
+Unknown exact release/model, absent SDK/config/artifact или integrity failure -> custom unavailable и fallback custom -> raw -> mangle. IPv6 отсутствие, подтверждённое config, явно отмечается как unsupported; отсутствие ожидаемого файла — ошибка.
+
+Никаких nearest tags, broad series/ranges, угадывания по архитектуре или trial loading. Для отсутствующего SDK допустима только explicit authoritative release/config mapping или подтверждённый alias. Например, на момент аудита 5.00.C.8.0-1 отсутствовал среди SDK tags и не сопоставляется автоматически с 5.00.C.12.*.
+
+Flash reads, reference-module hashes и hardware confirmation не нужны для SDK-derived selection. Artifact integrity и hardware status — разные проверки. Сохраняем experimental opt-in; compile/load success не повышает статус до verified.
+
+Sidecar может быть cache, но не доказательством происхождения; не принимаем произвольный файл через запись текущей модели в marker. Уже загруженный foreign module нельзя подтвердить хешем найденного позднее файла.
+
+Standalone release и selection contract реализуются здесь. Изменения внешнего keen-pbr repository — отдельная последующая интеграция, по этому manifest/fallback контракту; не реализуются в текущем шаге.
+
+## Задачи и статусы
+
+| ID | Status | Работа и критерий готовности |
+|---|---|---|
+| F01 | Done | Минимальный per-namespace hook context; errno/stage logs; teardown/unwind и config-provider audits без изменения PREROUTING contract |
+| F02 | Done | All-tag/model generator и schema; immutable refs; deterministic JSON; complete SDK input identities; honest unsupported cases |
+| F03 | Done | Per-build descriptor через existing build helpers; complete key с flags/environment; один путь вместо global SDK provenance |
+| F04 | Done | Scheduled/manual refresh; main comparison; only-matrix commit; explicit dispatch exact source SHA |
+| F05 | Done | Unique-key planner, isolated SDK builds, bounded shards, archives-only cache и validated durable release reuse; matrix/source/manual triggers |
+| F06 | Done | Exact-byte asset dedup, final manifest/checksums/details notes и complete-coverage snapshot publication с limit guards |
+| F07 | Done | Exact hw_id/full-release runtime lookup и integrity/fallback; standalone CLI/smoke support без изменений внешнего keen-pbr |
+| F08 | WIP | Integrated regression + reproducibility validation, initial all-tag backfill, incremental reuse proof и operator docs |
+| F08.1 | Done | 36 regressions, linters/runtime-safety, native cross-SDK/cross-architecture builds и clean-kernel reproducibility |
+| F08.2 | Done | Native snapshot assembly, prior-release reuse без повторной компиляции, exact selections/refusal и operator README |
+| F08.3 | ToDo | Удалённый initial backfill всех 3 475 keys; первый complete release и повторный workflow с reuse |
+| HW01 | ToDo | Отдельная проверка на настоящих роутерах и evidence-based status promotion; не gate SDK-derived selection |
+
+Порядок F08: targeted regression/reproducibility/cross-SDK checks, затем initial accepted unique-key backfill, публикация validated snapshot и проверка incremental reuse. F08 объединяет бывшие отдельные тесты, clean-build checks и полный 73-model sweep. Проверяем MIPS/ARM64 на двух SDK revisions; reproducibility subset строим дважды clean. Полный backfill покрывает все accepted unique keys, без повторного обязательного sweep того же SDK.
+
+Regression coverage: tag peeling, deterministic serialization, parser failures, input-key invalidation/reuse, provenance/integrity mismatch, required IPv6, shards, byte dedup и refusal неполного release. Hardware checks выполняются отдельно.
+
+## Доказательства и ссылки
+
+Подробности: README.md, STATUS.md, out/validation/end-to-end-current/report.json, out/validation/reproducibility.json, out/sdk-tag-audit.json и out/xtables-api-audit.json. out/ и .cache/ остаются локальными, не коммитятся.
+
+- [Keenetic SDK: exact release workflow](https://github.com/keenetic/keenetic-sdk#readme).
+- [GitHub workflow triggers и GITHUB_TOKEN](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow).
+- [GitHub release quotas](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases#storage-and-bandwidth-quotas).
+- [Kbuild reproducible builds](https://docs.kernel.org/kbuild/reproducible-builds.html).
+- [Linux internal API limits](https://docs.kernel.org/process/stable-api-nonsense.html).

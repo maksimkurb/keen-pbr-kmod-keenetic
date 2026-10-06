@@ -31,6 +31,7 @@ endef
 
 define Build/Compile
 	+$(MAKE) $(KERNEL_MAKEOPTS) M="$(PKG_BUILD_DIR)/src" \
+		$(if $(strip $(CFLAGS_MODULE)),CFLAGS_MODULE="$(CFLAGS_MODULE)") \
 		KEENPBR_VERSION="$(PKG_VERSION)" \
 		KEENPBR_PRIORITY="$(KEENPBR_PRIORITY)" modules
 endef

@@ -1,27 +1,37 @@
-# Status
+# Статус финального плана
 
-Task states: ToDo / WIP / Done. Planning is assigned to Sol; implementation to Luna.
+Планирование: **Sol**. Реализация: **Luna**, интеграция и проверки — основной агент. Контракты и критерии — [PLAN.md](PLAN.md).
 
-| ID | Status | Evidence / next action |
+## Реализация
+
+| ID | Status | Результат |
 |---|---|---|
-| P01 | Done | Primary upstream/AWG sources and actual Keenetic kernel commit 113cc622b3c48876927ae3c8db2e83fef4505fbf inspected; pinned registration APIs and extension restrictions documented in PLAN.md |
-| P02 | Done | PLAN.md includes shared config/metadata/CLI contracts and acceptance criteria |
-| K01 | Done | Separate IPv4/IPv6 PREROUTING modules implemented with per-netns table state |
-| K02 | Done | VERSION, Kbuild and SDK KernelPackage implemented; priority modes are compile-time |
-| B01 | Done | SDK preparation and single-group build script verify SDK and kernel refs; actual KN-1810 package build is T03 |
-| B02 | Done | ELF/ABI inspection and load-relevant candidate fingerprint scripts implemented |
-| B03 | Done | Matrix reporting and strict full/partial manifest and checksum generation implemented |
-| T01 | Done | Nine groups and 26 model candidates validate via stdlib JSON; all mappings remain experimental, SDK/kernel refs recorded |
-| T02 | Done | Five stdlib build-tool tests and tests/runtime-safety.sh pass; CI runs both |
-| T03 | Done | Final-source KN-1810 IPv4/IPv6 built (5668/5676 bytes), MIPS32 LE, vermagic `4.9-ndm-5 SMP mod_unload MIPS32_R2 32BIT`, version 0.1.0, priority -149; isolated raw -300 build and 3-entry PoC checksum passed at `out/priority-raw/release/`; source SHA256 `7dc1a6cce0b0a8455e7421429d4627cf4cf87e7f79576818d69445bee630fc4e` |
-| T04 | Done | Final-source KN-1812 ARM64 IPv4/IPv6 built (8048/8056 bytes), vermagic `4.9-ndm-5 SMP mod_unload aarch64`, version 0.1.0, priority -149 |
-| T05 | Done | Final-source matrix reports 9/9 groups, 18 modules and strict 20-asset release manifest; SDK ref `5ff3bfda8b7f38004f9fd6d4effc6bdaedf01e05`, kernel ref `113cc622b3c48876927ae3c8db2e83fef4505fbf`; 26 model mappings remain experimental |
-| C01 | Done | PR workflow derives KN-1810 and KN-1812 representative builds from groups config; YAML parses, shell checks defined |
-| C02 | Done | Nightly/full and tag release workflows derive all nine builds; release validates VERSION and publishes only on versioned tag |
-| H01 | Done | Exact model/hash/version checks and scoped IPv4/IPv6 smoke-test tooling implemented; no device run |
-| H02 | Done | External-ingress mangle-vs-keenpbr priority test tooling implemented; no device run |
-| H03 | ToDo | Requires real Keenetic; no verified models yet |
-| D01 | Done | README documents build, ABI/extension limits, compatibility status, runtime constraints and primary references; GPL-2 license included |
-| V01 | Done | Five unit tests, runtime identity refusal, shellcheck/syntax, compileall, workflow YAML, strict manifest, and all 19 SHA256SUMS entries passed |
+| F01 | Done | Минимальные IPv4/IPv6 PREROUTING-модули; per-namespace context; lifecycle, lazy-init lock, errno/logs и provider audits |
+| F02 | Done | Детерминированная all-tag/model matrix: immutable refs, полные SDK input identities, явные unsupported outcomes |
+| F03 | Done | Pinned per-build descriptors, фиксированное окружение и полный ключ сборки через existing helpers |
+| F04 | Done | Scheduled/manual refresh -> compare current main -> commit только matrix -> dispatch точного commit SHA |
+| F05 | Done | Unique-key planner, изолированные serial builds в bounded shards, archives-only cache и проверенный release reuse |
+| F06 | Done | Exact-byte dedup, self-contained manifest/matrix/checksums/details notes и автоматический draft/upload/verify/publish workflow |
+| F07 | Done | Exact model/full-release selection, trusted manifest/artifact checks и unavailable/fallback; внешний keen-pbr отдельно |
+| F08 | WIP | Локальные проверки завершены; initial remote backfill/release остаётся |
+| F08.1 | Done | 36 regressions, actionlint, shellcheck, runtime-safety; native MIPS/ARM64 и clean-kernel reproducibility |
+| F08.2 | Done | Native snapshot assembly, exact runtime selections, повторное использование настоящих .ko и operator README |
+| F08.3 | ToDo | Удалённая сборка всех accepted keys, полный первый release и повторный workflow с reuse |
+| HW01 | ToDo | Проверки на настоящих роутерах и evidence-based status promotion |
 
-The final-source after-mangle matrix and isolated KN-1810 raw-priority PoC are validated. Binary equality groups are candidates only and remain separate in the manifest. Hardware verification (H03) remains pending, all 26 model mappings are experimental, GitHub Actions was not run remotely, and no release has been published.
+## Доказательства
+
+- [kernel-matrix.json](kernel-matrix.json): **123 SDK-тега**, **4 976 поддерживаемых model/tag пар**, **3 475 уникальных SDK input keys**, **8 unsupported KAP-пар**. Разрешены **59 kernel commits**, **17 upstream Linux versions**.
+- Все **36 source tests** проходят; **actionlint 1.7.12**, **shellcheck**, **runtime-safety** и **git diff --check** проходят.
+- SDK **4.03.C.3.0-2 / KN-1810**, **5.00.C.12.0-0 / KN-1810** и **5.00.C.12.0-0 / KN-1812** реально собраны в pinned amd64 container; все шесть IPv4/IPv6 модулей прошли ELF/vermagic/version/priority/ABI и provenance audits.
+- Повторная KN-1810/4.03 сборка после `make target/linux/clean`: обе .ko, kernel config и Module.symvers **байт-в-байт одинаковы**. Отчёт: `out/validation/reproducibility.json`.
+- 4.03/5.00 MIPS имеют одинаковый vermagic, но разные module SHA256; поэтому kernel release/vermagic не используются как доказательство reuse.
+- Validation subset: три конфигурации, три SDK-тега, пять поддерживаемых consumers, шесть уникальных .ko. Проверены **10 точных runtime selections** и refusal неизвестного **KN-1910 / 5.00.C.8.0-1**.
+- Все три native builds импортированы через prior snapshot index и повторно прошли реальный ELF/audit. Повторный snapshot полностью совпадает по байтам и digest. Отчёт: `out/validation/end-to-end-current/report.json`.
+- Downloads-only cache проверен на двух последовательных SDK checkouts от UID 1000 с настоящими локальными Git/tag checks и stand-in compiler: архив сохраняется, .config не переносится. Отчёт: `out/validation/cache-shard-report.json`. Workflow повторяет checkout после установки Git, поскольку начальный slim container получает архив без Git history.
+
+## Что ещё не выполнялось
+
+Полный backfill **3 475** build keys, GitHub Actions запуск/публикация и router hardware tests не выполнялись. Validation snapshot — локальный subset, не полный release. Все новые mappings остаются **experimental**; runtime требует opt-in. Код workflow публикует автоматически только после полного покрытия и всех проверок.
+
+out/ и .cache/ не коммитятся. Изменения внешнего keen-pbr, flash/reference-module matching и угадывание по ближайшему SDK-тегу не входят в этот репозиторий.

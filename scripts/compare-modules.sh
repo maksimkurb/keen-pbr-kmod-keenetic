@@ -1,6 +1,29 @@
 #!/usr/bin/env bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+if [[ "${1:-}" == "--models" ]]; then
+    OUT_DIR="${2:-$ROOT/out}"
+    [[ $# -le 2 ]] || { echo "usage: $0 --models [OUT_DIR]" >&2; exit 2; }
+    [[ -d "$OUT_DIR/discovery" ]] || { echo "discovery output not found: $OUT_DIR/discovery" >&2; exit 2; }
+    python3 - "$ROOT" "$OUT_DIR" <<'PY'
+import json, pathlib, sys
+sys.path.insert(0, sys.argv[1] + "/scripts")
+from model_tools import atomic_json, candidate_report
+out = pathlib.Path(sys.argv[2]).resolve()
+try:
+    report = candidate_report(out)
+    atomic_json(out / "discovery" / "candidate-groups.json", report)
+except (OSError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
+    print(f"candidate comparison failed: {exc}", file=sys.stderr)
+    raise SystemExit(1)
+print("Candidate equality only; this output does not establish ABI or hardware compatibility.")
+print(f"Coverage: {len(report['coverage']['built'])}/{report['coverage']['inventory_total']} built; {len(report['coverage']['missing'])} missing; {len(report['coverage']['failed'])} failed")
+for group in report["candidate_groups"]:
+    print(f"{group['id']}: {', '.join(group['models'])} ({group['arch']}, IPv6={'yes' if group['ipv6']['supported'] else 'no'})")
+print(f"Wrote {out / 'discovery' / 'candidate-groups.json'}")
+PY
+    exit $?
+fi
 OUT_DIR="${1:-$ROOT/out}"
 [[ -d "$OUT_DIR" ]] || { echo "output directory not found: $OUT_DIR" >&2; exit 2; }
 python3 - "$ROOT" "$OUT_DIR" <<'PY'

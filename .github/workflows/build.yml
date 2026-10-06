@@ -1,112 +1,246 @@
-name: build
+name: Build SDK snapshot
 
 on:
   pull_request:
-  schedule:
-    - cron: "23 4 * * *"
+    paths:
+      - ".ci/**"
+      - ".github/workflows/**"
+      - "kernel-matrix.json"
+      - "LICENSE"
+      - "package/Makefile"
+      - "scripts/**"
+      - "sdk.lock"
+      - "src/**"
+      - "tests/**"
+      - "VERSION"
+  push:
+    branches: [main]
+    paths:
+      - ".ci/**"
+      - ".github/workflows/**"
+      - "kernel-matrix.json"
+      - "LICENSE"
+      - "package/Makefile"
+      - "scripts/**"
+      - "sdk.lock"
+      - "src/**"
+      - "tests/**"
+      - "VERSION"
   workflow_dispatch:
+    inputs:
+      source_ref:
+        description: Exact repository commit to build
+        required: true
+        default: main
 
 permissions:
   contents: read
 
-jobs:
-  targets:
-    runs-on: ubuntu-22.04
-    outputs:
-      matrix: ${{ steps.matrix.outputs.value }}
-    steps:
-      - uses: actions/checkout@v4
-      - id: matrix
-        run: |
-          python3 - <<'PY' >> "$GITHUB_OUTPUT"
-          import json
-          groups = json.load(open("targets/groups.yaml"))["groups"]
-          if "${{ github.event_name }}" == "pull_request":
-              wanted = {"KN-1810", "KN-1812"}
-              matrix = [{"group": name, "model": item["representative"]}
-                        for name, item in groups.items()
-                        if item["representative"] in wanted]
-              if {item["model"] for item in matrix} != wanted:
-                  raise SystemExit("PR representatives missing from groups.yaml")
-          else:
-              matrix = [{"group": name, "model": item["representative"]}
-                        for name, item in groups.items()]
-          print("value=" + json.dumps({"include": matrix}, separators=(",", ":")))
-          PY
+defaults:
+  run:
+    shell: bash
 
-  build:
-    needs: targets
+concurrency:
+  group: keenpbr-snapshot-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    outputs:
+      source_ref: ${{ steps.source.outputs.source_ref }}
     runs-on: ubuntu-22.04
-    timeout-minutes: 180
-    strategy:
-      fail-fast: false
-      matrix: ${{ fromJson(needs.targets.outputs.matrix) }}
+    container:
+      image: python:3.14.2-slim-bookworm@sha256:e87711ef5c86aaeaa7031718a69db79d334d94c545c709583f651b8185870941
+      options: --platform linux/amd64
     steps:
       - uses: actions/checkout@v4
-      - name: Install SDK host dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential gcc-12 g++-12 flex bison gawk gettext \
-            git libncurses-dev libssl-dev python3 rsync unzip zlib1g-dev file \
-            wget curl jq xxd zstd shellcheck kmod binutils bc gperf attr lzip \
-            protobuf-c-compiler libhtml-parser-perl libjson-perl libxml-libxml-perl
-      - name: Host checks
-        run: |
-          shellcheck --severity=warning scripts/*.sh tests/*.sh
-          for script in scripts/*.sh tests/*.sh; do bash -n "$script"; done
-          sh -n tests/runtime-safety.sh
-          sh tests/runtime-safety.sh
-          python3 -m compileall -q scripts tests
-          python3 -m unittest discover -s tests/source -v
-          python3 -c 'import sys; sys.path.insert(0, "scripts"); from kmodlib import matrix; assert len(matrix()[0]) == 9'
-      - name: Prepare pinned SDK
-        run: ./scripts/prepare-sdk.sh
-        env:
-          CC: gcc-12
-          HOSTCC: gcc-12
-          CXX: g++-12
-      - uses: actions/cache@v4
         with:
-          path: |
-            .cache/keenetic-sdk/dl
-            .cache/keenetic-sdk/downloads
-            .cache/keenetic-sdk/staging_dir
-            .cache/keenetic-sdk/toolchain-*
-            .cache/keenetic-sdk/build_dir
-          key: ${{ runner.os }}-sdk-${{ hashFiles('sdk.lock') }}-${{ matrix.model }}-${{ hashFiles('package/Makefile', 'src/**', 'scripts/**', 'VERSION') }}
-          restore-keys: |
-            ${{ runner.os }}-sdk-${{ hashFiles('sdk.lock') }}-${{ matrix.model }}-
-      - name: Build ${{ matrix.group }} (${{ matrix.model }})
-        run: ./scripts/build.sh "${{ matrix.group }}"
+          ref: ${{ inputs.source_ref || github.sha }}
+      - name: Install pinned check environment
+        run: .ci/setup-build-env.sh
+      # The slim image has no Git; the first checkout only bootstraps setup.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref || github.sha }}
+      - name: Run source and runtime safety checks
+        run: |
+          shellcheck .ci/setup-build-env.sh scripts/*.sh tests/runtime-safety.sh
+          python3 -m unittest discover -s tests/source -v
+          bash tests/runtime-safety.sh
+      - name: Record checked commit
+        id: source
+        run: echo "source_ref=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  plan:
+    if: ${{ github.event_name != 'pull_request' }}
+    needs: [check]
+    runs-on: ubuntu-22.04
+    container:
+      image: python:3.14.2-slim-bookworm@sha256:e87711ef5c86aaeaa7031718a69db79d334d94c545c709583f651b8185870941
+      options: --platform linux/amd64
+    outputs:
+      shards: ${{ steps.plan.outputs.shards }}
+      source_ref: ${{ steps.plan.outputs.source_ref }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.check.outputs.source_ref }}
+      - name: Install pinned SDK build environment
+        run: .ci/setup-build-env.sh
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.check.outputs.source_ref }}
+      - name: Plan complete matrix coverage
+        id: plan
+        run: |
+          mkdir -p out
+          python3 scripts/plan-builds.py --matrix kernel-matrix.json \
+            --descriptors out/descriptors --output out/plan.json
+          python3 - <<'PY'
+          import json, os
+          plan = json.load(open("out/plan.json"))
+          shards = [{"shard": item["shard"]} for item in plan["shards"]]
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              output.write("shards=" + json.dumps({"include": shards}, separators=(",", ":")) + "\n")
+              output.write("source_ref=" + __import__("subprocess").check_output(["git", "rev-parse", "HEAD"], text=True).strip() + "\n")
+          PY
+      - name: Index the newest published snapshot for verified reuse
         env:
-          CC: gcc-12
-          HOSTCC: gcc-12
-          CXX: g++-12
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/reuse-release.py --fetch-index --repository "$GITHUB_REPOSITORY" --token "$GH_TOKEN" --output out/reuse-index
       - uses: actions/upload-artifact@v4
         with:
-          name: keenpbr-${{ matrix.group }}
-          path: out/**
+          name: keenpbr-plan-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            out/plan.json
+            out/descriptors/*.json
+            out/reuse-index/**
           if-no-files-found: error
           retention-days: 7
 
-  aggregate:
-    if: github.event_name != 'pull_request'
-    needs: build
+  build:
+    needs: plan
     runs-on: ubuntu-22.04
+    container:
+      image: python:3.14.2-slim-bookworm@sha256:e87711ef5c86aaeaa7031718a69db79d334d94c545c709583f651b8185870941
+      options: --platform linux/amd64
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJson(needs.plan.outputs.shards) }}
     steps:
       - uses: actions/checkout@v4
-      - name: Install artifact inspection tools
-        run: sudo apt-get update && sudo apt-get install -y binutils kmod
+        with:
+          ref: ${{ needs.plan.outputs.source_ref }}
+      - name: Install pinned SDK build environment
+        run: .ci/setup-build-env.sh
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.plan.outputs.source_ref }}
       - uses: actions/download-artifact@v4
         with:
-          pattern: keenpbr-*
+          name: keenpbr-plan-${{ github.run_id }}-${{ github.run_attempt }}
           path: out
-          merge-multiple: true
-      - name: Assemble and validate full matrix release files
-        run: python3 scripts/generate-manifest.py --out out --release-dir out/release
+      - name: Prepare archives-only cache
+        run: install -d -m 755 -o builder -g builder /build/downloads
+      - uses: actions/cache@v4
+        with:
+          path: /build/downloads
+          key: sdk-downloads-${{ hashFiles('.ci/build-environment.json') }}-${{ matrix.shard }}-${{ hashFiles('kernel-matrix.json') }}
+          restore-keys: |
+            sdk-downloads-${{ hashFiles('.ci/build-environment.json') }}-${{ matrix.shard }}-
+      - name: Build shard serially
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          chown -R builder:builder out /build/downloads
+          runuser --user builder -- env python3 scripts/reuse-release.py \
+            --index out/reuse-index --plan out/plan.json --shard "${{ matrix.shard }}" \
+            --output out/builds --token "$GH_TOKEN"
+          runuser --user builder -- env JOBS=4 python3 scripts/build-snapshot.py \
+            --plan out/plan.json --descriptors out/descriptors --shard "${{ matrix.shard }}" --out out \
+            --download-cache /build/downloads
       - uses: actions/upload-artifact@v4
         with:
-          name: keenpbr-nightly-${{ github.run_number }}
-          path: out/release/**
+          name: keenpbr-build-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.shard }}
+          path: out/builds/*
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 7
+
+  assemble:
+    needs: [plan, build, check]
+    runs-on: ubuntu-22.04
+    container:
+      image: python:3.14.2-slim-bookworm@sha256:e87711ef5c86aaeaa7031718a69db79d334d94c545c709583f651b8185870941
+      options: --platform linux/amd64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.plan.outputs.source_ref }}
+      - name: Install pinned audit tools
+        run: .ci/setup-build-env.sh
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.plan.outputs.source_ref }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: keenpbr-plan-${{ github.run_id }}-${{ github.run_attempt }}
+          path: out
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: keenpbr-build-${{ github.run_id }}-${{ github.run_attempt }}-*
+          path: out/builds
+          merge-multiple: true
+      - name: Assemble and verify immutable snapshot
+        id: assemble
+        run: |
+          python3 scripts/assemble-release.py --matrix kernel-matrix.json --plan out/plan.json \
+            --builds-dir out/builds --output-dir out/snapshots --notes-file out/release-notes.md \
+            --repository "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}" \
+            --reuse-index out/reuse-index | tee out/snapshot-path.txt
+          snapshot="$(cat out/snapshot-path.txt)"
+          (cd "$snapshot" && sha256sum -c SHA256SUMS)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: keenpbr-snapshot-${{ github.run_id }}-${{ github.run_attempt }}
+          path: out/snapshots/modules-*/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: keenpbr-release-notes-${{ github.run_id }}-${{ github.run_attempt }}
+          path: out/release-notes.md
+          if-no-files-found: error
+          retention-days: 30
+
+  publish:
+    needs: [plan, assemble]
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    container:
+      image: python:3.14.2-slim-bookworm@sha256:e87711ef5c86aaeaa7031718a69db79d334d94c545c709583f651b8185870941
+      options: --platform linux/amd64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.plan.outputs.source_ref }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: keenpbr-snapshot-${{ github.run_id }}-${{ github.run_attempt }}
+          path: out/snapshots
+      - uses: actions/download-artifact@v4
+        with:
+          name: keenpbr-release-notes-${{ github.run_id }}-${{ github.run_attempt }}
+          path: out/notes
+      - name: Publish a checksum-complete release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          notes="$(find out/notes -type f -name release-notes.md -print -quit)"
+          snapshot="$(find out/snapshots -type f -name manifest.json -print0 -quit | xargs -0 -r dirname)"
+          test -n "$notes" && test -n "$snapshot"
+          python3 scripts/publish-snapshot.py --snapshot "$snapshot" --notes "$notes" \
+            --repository "$GITHUB_REPOSITORY" --target-commit "${{ needs.plan.outputs.source_ref }}" \
+            --token "$GH_TOKEN"
