@@ -17,6 +17,7 @@
 | F08.1 | Done | 36 regressions, actionlint, shellcheck, runtime-safety; native MIPS/ARM64 и clean-kernel reproducibility |
 | F08.2 | Done | Native snapshot assembly, exact runtime selections, повторное использование настоящих .ko и operator README |
 | F08.3 | ToDo | Удалённая сборка всех accepted keys, полный первый release и повторный workflow с reuse |
+| CI01 | Done | ShellCheck 0.9.0: явные условия вместо SC2015; scoped annotation для trap cleanup SC2317/SC2329. Полный check прошёл в pinned container |
 | HW01 | ToDo | Проверки на настоящих роутерах и evidence-based status promotion |
 
 ## Доказательства
@@ -32,6 +33,8 @@
 
 ## Что ещё не выполнялось
 
-Полный backfill **3 475** build keys, GitHub Actions запуск/публикация и router hardware tests не выполнялись. Validation snapshot — локальный subset, не полный release. Все новые mappings остаются **experimental**; runtime требует opt-in. Код workflow публикует автоматически только после полного покрытия и всех проверок.
+Первый [GitHub Actions check](https://github.com/maksimkurb/keen-pbr-kmod-keenetic/actions/runs/37511421304/job/112433247264) завершился до tests/build на ShellCheck 0.9.0 (SC2015 и SC2317). Причина воспроизведена; исправление прошло ShellCheck 0.9.0/0.11.0, все 36 tests и runtime-safety. Изменения пока локальные; исправленный commit удалённо не запускался.
+
+Полный backfill **3 475** build keys, публикация и router hardware tests не выполнялись. Validation snapshot — локальный subset, не полный release. Все новые mappings остаются **experimental**; runtime требует opt-in. Код workflow публикует автоматически только после полного покрытия и всех проверок.
 
 out/ и .cache/ не коммитятся. Изменения внешнего keen-pbr, flash/reference-module matching и угадывание по ближайшему SDK-тегу не входят в этот репозиторий.

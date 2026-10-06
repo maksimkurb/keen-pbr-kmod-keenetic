@@ -28,7 +28,9 @@ case "$family" in ipv4|ipv6) ;; *) usage ;; esac
 case "$iface" in ''|*[!A-Za-z0-9_.:-]*) fail "invalid interface" ;; esac
 case "$source" in ''|-*|*[!A-Za-z0-9:.]*) fail "invalid source address" ;; esac
 case "$port" in ''|*[!0-9]*) fail "port must be numeric" ;; esac
-[ "$port" -ge 1 ] && [ "$port" -le 65535 ] || fail "port out of range"
+if ! [ "$port" -ge 1 ] || ! [ "$port" -le 65535 ]; then
+	fail "port out of range"
+fi
 [ "$mark_a" != "$mark_b" ] || fail "MARK_A and MARK_B must differ"
 
 [ "$(id -u)" = 0 ] || fail "must run as root"
@@ -48,11 +50,15 @@ mask_num=$(to_decimal "$mask") || fail "MASK must be a decimal or 32-bit hex val
 mark_a_num=$(to_decimal "$mark_a") || fail "MARK_A must be a decimal or 32-bit hex value"
 mark_b_num=$(to_decimal "$mark_b") || fail "MARK_B must be a decimal or 32-bit hex value"
 [ "$mask_num" -ne 0 ] || fail "MASK must be nonzero"
-[ "$mark_a_num" -le "$mask_num" ] && [ "$mark_b_num" -le "$mask_num" ] || fail "marks must fit within MASK"
+if ! [ "$mark_a_num" -le "$mask_num" ] || ! [ "$mark_b_num" -le "$mask_num" ]; then
+	fail "marks must fit within MASK"
+fi
 actual_model=$(ndmc -c 'show version' | awk -F: '$1 ~ /^[[:space:]]*hw_id[[:space:]]*$/ { gsub(/^[[:space:]]+|[[:space:]]+$/, "", $2); print $2; exit }')
 case "$actual_model" in NC-[0-9][0-9][0-9][0-9]) actual_model=KN-${actual_model#NC-} ;; esac
 [ "$actual_model" = "$model" ] || fail "requested $model but this router reports '${actual_model:-unknown}'"
-[ -r "$manifest" ] && [ -r "$module" ] || fail "manifest or module is unreadable"
+if ! [ -r "$manifest" ] || ! [ -r "$module" ]; then
+	fail "manifest or module is unreadable"
+fi
 [ "$(sha256sum "$manifest" | awk '{print $1}')" = "$manifest_sha" ] || fail "manifest SHA256 mismatch"
 group=$(jq -er --arg model "$model" '.models[$model].group' "$manifest") || fail "model is absent from manifest"
 status=$(jq -er --arg model "$model" '.models[$model].status' "$manifest") || fail "model has no compatibility status"
@@ -109,7 +115,7 @@ mangle_chain_added=0
 keen_chain_added=0
 observe_chain_added=0
 # This cleanup function is invoked by the EXIT trap.
-# shellcheck disable=SC2329
+# shellcheck disable=SC2317,SC2329
 cleanup() {
 	if [ "$observe_jump" -eq 1 ]; then "$ipt" -t filter -D FORWARD -i "$iface" -s "$source" -p tcp -m multiport --dports "$port" -j "$observe_chain" >/dev/null 2>&1 || :; fi
 	if [ "$keen_jump" -eq 1 ]; then "$ipt" -t keenpbr -D PREROUTING -i "$iface" -s "$source" -p tcp -m multiport --dports "$port" -j "$keen_chain" >/dev/null 2>&1 || :; fi

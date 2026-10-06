@@ -3,7 +3,10 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SDK_DIR="${SDK_DIR:-$ROOT/.cache/keenetic-sdk}"
 if [[ "${1:-}" == "--ref" ]]; then
-  (($# == 6)) && [[ "$3" == "--tag" && "$5" == "--destination" ]] || { echo "usage: $0 --ref SHA --tag TAG --destination PATH" >&2; exit 2; }
+  if (($# != 6)) || [[ "$3" != "--tag" || "$5" != "--destination" ]]; then
+    echo "usage: $0 --ref SHA --tag TAG --destination PATH" >&2
+    exit 2
+  fi
   python3 - "$ROOT/sdk.lock" "$2" "$4" "$6" <<'PY'
 import json, pathlib, re, subprocess, sys
 lock = json.loads(pathlib.Path(sys.argv[1]).read_text())

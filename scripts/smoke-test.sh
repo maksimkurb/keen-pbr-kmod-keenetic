@@ -28,7 +28,9 @@ case "$family" in ipv4|ipv6) ;; *) usage ;; esac
 case "$iface" in ''|*[!A-Za-z0-9_.:-]*) fail "invalid interface" ;; esac
 case "$source" in ''|-*|*[!A-Za-z0-9:.]*) fail "invalid source address" ;; esac
 case "$port" in ''|*[!0-9]*) fail "port must be numeric" ;; esac
-[ "$port" -ge 1 ] && [ "$port" -le 65535 ] || fail "port out of range"
+if ! [ "$port" -ge 1 ] || ! [ "$port" -le 65535 ]; then
+	fail "port out of range"
+fi
 
 [ "$(id -u)" = 0 ] || fail "must run as root"
 command -v jq >/dev/null 2>&1 || fail "jq is required to read the release manifest"
@@ -112,7 +114,7 @@ chain_added=0
 restore_added=0
 set_added=0
 # This cleanup function is invoked by the EXIT trap.
-# shellcheck disable=SC2329
+# shellcheck disable=SC2317,SC2329
 cleanup() {
 	if [ "$jump_added" -eq 1 ]; then
 		"$ipt" -t keenpbr -D PREROUTING -i "$iface" -s "$source" -p tcp -m multiport --dports "$port" -j "$chain" >/dev/null 2>&1 || :
