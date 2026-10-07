@@ -20,6 +20,7 @@
 | CI01 | Done | ShellCheck 0.9.0: явные условия вместо SC2015; scoped annotation для trap cleanup SC2317/SC2329. Полный check прошёл в pinned container |
 | CI02 | Done | Persistent safe.directory для точного GITHUB_WORKSPACE и fail-fast checked SHA; ownership failure воспроизведён, полный planner/36 tests прошли в pinned container |
 | CI03 | Done | SDK Python scoped to Debian 3.11/distutils; exact failed SDK/model rebuilt and both .ko audited; 36 tests and linters passed |
+| CI04 | Done | CMake 3.8.1/m4 1.4.18 host compatibility patches hashed in build identity; SDK 3.07 / KN-2110 built and audited with Actions image/versions/JOBS=4 |
 | HW01 | ToDo | Проверки на настоящих роутерах и evidence-based status promotion |
 
 ## Доказательства
@@ -46,3 +47,7 @@ out/ и .cache/ не коммитятся. Изменения внешнего k
 ## CI03 — legacy SDK Python prerequisites (Done)
 
 Build run 37528394006 reached SDK 3.08.C.4.0-1 and failed its python3-distutils prerequisite: `python` resolved to container Python 3.14. SDK commands now use Debian Python 3.11 with distutils; repository orchestration retains Python 3.14. The exact failed configuration (SDK 3.08.C.4.0-1 / KN-2010, big-endian MIPS) built successfully with both IPv4/IPv6 .ko passing ELF/vermagic/version/priority/ABI and provenance audits. Final build key: `bc045c782c020f16a334d4c39cd5ddd3625dbe09f94d767d8c57ada379a0106c`. All 36 tests, ShellCheck 0.9.0, actionlint 1.7.12 and runtime-safety passed. Evidence: `out/validation/ci03/report.json` and `python-prerequisite.json`.
+
+## CI04 — SDK 3.07 host tools (Done)
+
+Run 37587213858 / job 112681156815 passed prerequisites but failed in tools/install at CMake 3.8.1. Exact configuration: SDK 3.07.B.0.0-0 / KN-2110. Reproduced both host failures: CMake 3.8.1 missed `<limits>` for std::numeric_limits; m4 1.4.18 assumed constant SIGSTKSZ, incompatible with modern glibc. Version-scoped patches are hashed into build_inputs_sha256; tools/toolchain commands explicitly use V=s. The exact failed SDK/model built both .ko with ELF/vermagic/version/priority/ABI and provenance audits in the same image digest/apt snapshot as Actions: Python 3.14.2/3.11.2, GCC 12.2.0, JOBS=4. All 36 tests, ShellCheck 0.9.0, actionlint 1.7.12 and runtime-safety passed. Evidence: `out/validation/ci04/report.json`.

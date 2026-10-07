@@ -46,7 +46,10 @@ the build workflow with that exact commit SHA.
 Descriptor builds require the pinned amd64 Debian/Python/GCC environment in
 `.ci/build-environment.json`. Use the same image locally so the build host and
 reproducibility settings match CI. Repository scripts use Python 3.14; SDK
-commands use Debian Python 3.11 with `distutils` from the pinned apt snapshot:
+commands use Debian Python 3.11 with `distutils` from the pinned apt snapshot.
+SDKs using CMake 3.8.1 receive the missing `<limits>` include required by GCC 12;
+m4 1.4.18 uses a constant signal-stack size for compatibility with modern glibc.
+Both host-tool patches are included in the build identity:
 
 ```sh
 docker run --rm -it --platform linux/amd64 \

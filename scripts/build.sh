@@ -178,14 +178,22 @@ rm -rf -- "$PKG"
 mkdir -p "$PKG"
 cp -a "$ROOT/package/Makefile" "$ROOT/src" "$ROOT/LICENSE" "$ROOT/VERSION" "$PKG/"
 cd "$SDK_DIR"
+# CMake 3.8.1 relied on a transitive <limits> include removed by newer GCC.
+if grep -Eq '^PKG_VERSION[[:space:]]*:=[[:space:]]*3\.8\.1[[:space:]]*$' tools/cmake/Makefile; then
+  cp "$ROOT/.ci/cmake-3.8.1-limits.patch" tools/cmake/patches/999-include-limits.patch
+fi
+# m4 1.4.18 assumes SIGSTKSZ is constant; glibc 2.34+ makes it dynamic.
+if grep -Eq '^PKG_VERSION[[:space:]]*:=[[:space:]]*1\.4\.18[[:space:]]*$' tools/m4/Makefile; then
+  cp "$ROOT/.ci/m4-1.4.18-sigstksz.patch" tools/m4/patches/999-constant-sigstksz.patch
+fi
 # Legacy SDK host tools require Debian Python 3.11 and its distutils.
 # Scope PATH to SDK commands; repository orchestration keeps Python 3.14.
 PATH="/usr/bin:$PATH" ./configure.sh "$MODEL"
 grep -qx 'CONFIG_PACKAGE_kmod-keenpbr-table=m' .config || printf '%s\n' 'CONFIG_PACKAGE_kmod-keenpbr-table=m' >> .config
 PATH="/usr/bin:$PATH" make -j"$JOBS" defconfig "${MAKE_REPRO_ARGS[@]}"
 # A fresh checkout needs host utilities and the target compiler before Linux is built.
-PATH="/usr/bin:$PATH" make -j"$JOBS" tools/install "${MAKE_REPRO_ARGS[@]}"
-PATH="/usr/bin:$PATH" make -j"$JOBS" toolchain/install "${MAKE_REPRO_ARGS[@]}"
+PATH="/usr/bin:$PATH" make -j"$JOBS" tools/install V=s "${MAKE_REPRO_ARGS[@]}"
+PATH="/usr/bin:$PATH" make -j"$JOBS" toolchain/install V=s "${MAKE_REPRO_ARGS[@]}"
 PATH="/usr/bin:$PATH" make -j"$JOBS" target/linux/compile V=s "${MAKE_REPRO_ARGS[@]}"
 PATH="/usr/bin:$PATH" make -j"$JOBS" defconfig "${MAKE_REPRO_ARGS[@]}"
 grep -Eq '^CONFIG_PACKAGE_kmod-keenpbr-table=m$' .config || { echo "defconfig dropped kmod package config" >&2; exit 1; }

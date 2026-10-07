@@ -34,7 +34,8 @@ def build_inputs_sha256(root=ROOT):
     root = Path(root)
     names = ("scripts/build.sh", "scripts/prepare-sdk.sh", "scripts/sdk_matrix.py",
              "scripts/kmodlib.py", "scripts/model_tools.py", "package/Makefile", "sdk.lock",
-             ".ci/build-environment.json", ".ci/setup-build-env.sh")
+             ".ci/build-environment.json", ".ci/setup-build-env.sh", ".ci/cmake-3.8.1-limits.patch",
+             ".ci/m4-1.4.18-sigstksz.patch")
     digest = hashlib.sha256()
     for name in names:
         path = root / name

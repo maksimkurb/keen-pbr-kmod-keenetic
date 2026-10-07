@@ -114,6 +114,7 @@ Standalone release и selection contract реализуются здесь. Из
 | CI01 | Done | Падение check job на ShellCheck 0.9.0 воспроизведено и исправлено; полный check прошёл в pinned container и lint на 0.11.0 |
 | CI02 | Done | Persistent Git trust для точного CI workspace; checked SHA завершает job при ошибке Git. Ownership failure/узкий scope воспроизведены; полный planner и 36 tests прошли в pinned container |
 | CI03 | Done | SDK host commands use Debian Python 3.11/distutils; exact failing SDK 3.08.C.4.0-1 / KN-2010 built and audited; 36 tests/linters/runtime-safety passed |
+| CI04 | Done | SDK 3.07 host failures reproduced: CMake missing limits and m4 dynamic SIGSTKSZ; version-scoped hashed patches, verbose tools/toolchain, exact pinned environment/JOBS=4 native IPv4/IPv6 build audited |
 | HW01 | ToDo | Отдельная проверка на настоящих роутерах и evidence-based status promotion; не gate SDK-derived selection |
 
 Порядок F08: targeted regression/reproducibility/cross-SDK checks, затем initial accepted unique-key backfill, публикация validated snapshot и проверка incremental reuse. F08 объединяет бывшие отдельные тесты, clean-build checks и полный 73-model sweep. Проверяем MIPS/ARM64 на двух SDK revisions; reproducibility subset строим дважды clean. Полный backfill покрывает все accepted unique keys, без повторного обязательного sweep того же SDK.
