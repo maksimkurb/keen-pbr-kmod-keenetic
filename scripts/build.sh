@@ -178,14 +178,16 @@ rm -rf -- "$PKG"
 mkdir -p "$PKG"
 cp -a "$ROOT/package/Makefile" "$ROOT/src" "$ROOT/LICENSE" "$ROOT/VERSION" "$PKG/"
 cd "$SDK_DIR"
-./configure.sh "$MODEL"
+# Legacy SDK host tools require Debian Python 3.11 and its distutils.
+# Scope PATH to SDK commands; repository orchestration keeps Python 3.14.
+PATH="/usr/bin:$PATH" ./configure.sh "$MODEL"
 grep -qx 'CONFIG_PACKAGE_kmod-keenpbr-table=m' .config || printf '%s\n' 'CONFIG_PACKAGE_kmod-keenpbr-table=m' >> .config
-make -j"$JOBS" defconfig "${MAKE_REPRO_ARGS[@]}"
+PATH="/usr/bin:$PATH" make -j"$JOBS" defconfig "${MAKE_REPRO_ARGS[@]}"
 # A fresh checkout needs host utilities and the target compiler before Linux is built.
-make -j"$JOBS" tools/install "${MAKE_REPRO_ARGS[@]}"
-make -j"$JOBS" toolchain/install "${MAKE_REPRO_ARGS[@]}"
-make -j"$JOBS" target/linux/compile V=s "${MAKE_REPRO_ARGS[@]}"
-make -j"$JOBS" defconfig "${MAKE_REPRO_ARGS[@]}"
+PATH="/usr/bin:$PATH" make -j"$JOBS" tools/install "${MAKE_REPRO_ARGS[@]}"
+PATH="/usr/bin:$PATH" make -j"$JOBS" toolchain/install "${MAKE_REPRO_ARGS[@]}"
+PATH="/usr/bin:$PATH" make -j"$JOBS" target/linux/compile V=s "${MAKE_REPRO_ARGS[@]}"
+PATH="/usr/bin:$PATH" make -j"$JOBS" defconfig "${MAKE_REPRO_ARGS[@]}"
 grep -Eq '^CONFIG_PACKAGE_kmod-keenpbr-table=m$' .config || { echo "defconfig dropped kmod package config" >&2; exit 1; }
 KERNEL_DIR="$(find "$SDK_DIR/build_dir" -type f -path "*/linux-*_${MODEL}/linux-4.9/.config" -print -quit | sed 's#/.config$##')"
 [[ -n "$KERNEL_DIR" && -f "$KERNEL_DIR/.modules" ]] || { echo "configured kernel tree with .modules not found for $MODEL" >&2; exit 1; }
@@ -211,10 +213,10 @@ export PROVIDER_EVIDENCE
 if [[ "$BUILD_KIND" == group && "$IPV6_MATRIX" != "$IPV6_SUPPORTED" ]]; then
   echo "matrix IPv6 support does not match effective kernel config for $MODEL" >&2; exit 1
 fi
-make "package/kernel/keenpbr-table/clean" V=s "${MAKE_REPRO_ARGS[@]}"
+PATH="/usr/bin:$PATH" make "package/kernel/keenpbr-table/clean" V=s "${MAKE_REPRO_ARGS[@]}"
 EXTRA_MODULE_ARGS=()
 [[ -z "$MODULE_CFLAGS" ]] || EXTRA_MODULE_ARGS+=("CFLAGS_MODULE=$MODULE_CFLAGS")
-make -j"$JOBS" "package/kernel/keenpbr-table/compile" V=s KEENPBR_PRIORITY="$PRIORITY" KEENPBR_VERSION="$VERSION" "${EXTRA_MODULE_ARGS[@]}" "${MAKE_REPRO_ARGS[@]}"
+PATH="/usr/bin:$PATH" make -j"$JOBS" "package/kernel/keenpbr-table/compile" V=s KEENPBR_PRIORITY="$PRIORITY" KEENPBR_VERSION="$VERSION" "${EXTRA_MODULE_ARGS[@]}" "${MAKE_REPRO_ARGS[@]}"
 
 mapfile -t PKG_DIRS < <(find "$SDK_DIR/build_dir" -type d -path "*/linux-*_${MODEL}/keenpbr-table-${VERSION}/src" -print)
 (( ${#PKG_DIRS[@]} == 1 )) || { echo "expected one fresh package build dir for $MODEL, found ${#PKG_DIRS[@]}" >&2; exit 1; }

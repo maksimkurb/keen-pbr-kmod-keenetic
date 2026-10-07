@@ -113,6 +113,7 @@ Standalone release и selection contract реализуются здесь. Из
 | F08.3 | ToDo | Удалённый initial backfill всех 3 475 keys; первый complete release и повторный workflow с reuse |
 | CI01 | Done | Падение check job на ShellCheck 0.9.0 воспроизведено и исправлено; полный check прошёл в pinned container и lint на 0.11.0 |
 | CI02 | Done | Persistent Git trust для точного CI workspace; checked SHA завершает job при ошибке Git. Ownership failure/узкий scope воспроизведены; полный planner и 36 tests прошли в pinned container |
+| CI03 | Done | SDK host commands use Debian Python 3.11/distutils; exact failing SDK 3.08.C.4.0-1 / KN-2010 built and audited; 36 tests/linters/runtime-safety passed |
 | HW01 | ToDo | Отдельная проверка на настоящих роутерах и evidence-based status promotion; не gate SDK-derived selection |
 
 Порядок F08: targeted regression/reproducibility/cross-SDK checks, затем initial accepted unique-key backfill, публикация validated snapshot и проверка incremental reuse. F08 объединяет бывшие отдельные тесты, clean-build checks и полный 73-model sweep. Проверяем MIPS/ARM64 на двух SDK revisions; reproducibility subset строим дважды clean. Полный backfill покрывает все accepted unique keys, без повторного обязательного sweep того же SDK.

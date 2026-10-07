@@ -45,7 +45,8 @@ the build workflow with that exact commit SHA.
 
 Descriptor builds require the pinned amd64 Debian/Python/GCC environment in
 `.ci/build-environment.json`. Use the same image locally so the build host and
-reproducibility settings match CI:
+reproducibility settings match CI. Repository scripts use Python 3.14; SDK
+commands use Debian Python 3.11 with `distutils` from the pinned apt snapshot:
 
 ```sh
 docker run --rm -it --platform linux/amd64 \

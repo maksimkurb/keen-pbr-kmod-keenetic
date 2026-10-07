@@ -19,6 +19,7 @@
 | F08.3 | ToDo | Удалённая сборка всех accepted keys, полный первый release и повторный workflow с reuse |
 | CI01 | Done | ShellCheck 0.9.0: явные условия вместо SC2015; scoped annotation для trap cleanup SC2317/SC2329. Полный check прошёл в pinned container |
 | CI02 | Done | Persistent safe.directory для точного GITHUB_WORKSPACE и fail-fast checked SHA; ownership failure воспроизведён, полный planner/36 tests прошли в pinned container |
+| CI03 | Done | SDK Python scoped to Debian 3.11/distutils; exact failed SDK/model rebuilt and both .ko audited; 36 tests and linters passed |
 | HW01 | ToDo | Проверки на настоящих роутерах и evidence-based status promotion |
 
 ## Доказательства
@@ -36,8 +37,12 @@
 
 Первый [GitHub Actions check](https://github.com/maksimkurb/keen-pbr-kmod-keenetic/actions/runs/37511421304/job/112433247264) завершился до tests/build на ShellCheck 0.9.0 (SC2015 и SC2317). Исправление CI01 прошло в следующем удалённом run.
 
-Во [втором run](https://github.com/maksimkurb/keen-pbr-kmod-keenetic/actions/runs/37520590815/job/112465024352) check прошёл, planner создал 3 475 keys/256 shards, затем Git остановил запись SHA с `detected dubious ownership`. Setup теперь постоянно регистрирует только точный GITHUB_WORKSPACE; запись checked SHA больше не маскирует ошибку через echo. В pinned container воспроизведён exit 128 до исправления, после него прошли полный planner и GitHub outputs, ShellCheck 0.9.0, 36 tests и runtime-safety. Проверено, что чужой checkout остаётся запрещённым и ошибка SHA останавливает шаг без outputs. Отчёт: `out/validation/ci-ownership.json`. Повторная удалённая проверка CI02 остаётся в F08.3.
+Во [втором run](https://github.com/maksimkurb/keen-pbr-kmod-keenetic/actions/runs/37520590815/job/112465024352) check прошёл, planner создал 3 475 keys/256 shards, затем Git остановил запись SHA с `detected dubious ownership`. Setup теперь постоянно регистрирует только точный GITHUB_WORKSPACE; запись checked SHA больше не маскирует ошибку через echo. В pinned container воспроизведён exit 128 до исправления, после него прошли полный planner и GitHub outputs, ShellCheck 0.9.0, 36 tests и runtime-safety. Проверено, что чужой checkout остаётся запрещённым и ошибка SHA останавливает шаг без outputs. Отчёт: `out/validation/ci-ownership.json`. В run 37528394006 check и plan прошли; последующее падение SDK build исправлено в CI03.
 
 Полный backfill **3 475** build keys, публикация и router hardware tests не выполнялись. Validation snapshot — локальный subset, не полный release. Все новые mappings остаются **experimental**; runtime требует opt-in. Код workflow публикует автоматически только после полного покрытия и всех проверок.
 
 out/ и .cache/ не коммитятся. Изменения внешнего keen-pbr, flash/reference-module matching и угадывание по ближайшему SDK-тегу не входят в этот репозиторий.
+
+## CI03 — legacy SDK Python prerequisites (Done)
+
+Build run 37528394006 reached SDK 3.08.C.4.0-1 and failed its python3-distutils prerequisite: `python` resolved to container Python 3.14. SDK commands now use Debian Python 3.11 with distutils; repository orchestration retains Python 3.14. The exact failed configuration (SDK 3.08.C.4.0-1 / KN-2010, big-endian MIPS) built successfully with both IPv4/IPv6 .ko passing ELF/vermagic/version/priority/ABI and provenance audits. Final build key: `bc045c782c020f16a334d4c39cd5ddd3625dbe09f94d767d8c57ada379a0106c`. All 36 tests, ShellCheck 0.9.0, actionlint 1.7.12 and runtime-safety passed. Evidence: `out/validation/ci03/report.json` and `python-prerequisite.json`.

@@ -12,7 +12,8 @@ apt-get -o Acquire::Check-Valid-Until=false update
 apt-get install -y --no-install-recommends attr autoconf automake bc binutils bison build-essential curl file flex \
   gawk gcc-12 gettext g++-12 git gperf help2man jq kmod libhtml-parser-perl libjson-perl \
   libncurses-dev libssl-dev libxml-libxml-perl locales lzip pkg-config protobuf-c-compiler rsync shellcheck \
-  passwd subversion swig unzip wget xxd xz-utils zlib1g-dev zstd
+  passwd python3-distutils python-is-python3 subversion swig unzip wget xxd xz-utils zlib1g-dev zstd
+/usr/bin/python -c "import distutils.core"
 rm -rf /var/lib/apt/lists/*
 # Container Git commands need persistent trust beyond checkout's temporary HOME.
 if [[ -n "${GITHUB_WORKSPACE:-}" ]]; then

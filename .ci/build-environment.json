@@ -20,6 +20,6 @@
     "gawk", "gcc-12", "gettext", "g++-12", "git", "gperf", "help2man", "jq",
     "kmod", "libhtml-parser-perl", "libjson-perl", "libncurses-dev", "libssl-dev",
     "libxml-libxml-perl", "locales", "lzip", "pkg-config", "protobuf-c-compiler", "rsync", "shellcheck",
-    "passwd", "subversion", "swig", "unzip", "wget", "xxd", "xz-utils", "zlib1g-dev", "zstd"
+    "passwd", "python3-distutils", "python-is-python3", "subversion", "swig", "unzip", "wget", "xxd", "xz-utils", "zlib1g-dev", "zstd"
   ]
 }
