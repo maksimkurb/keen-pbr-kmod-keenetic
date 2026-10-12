@@ -1672,6 +1672,25 @@
       "sdk_ref": "5ad300b0fe03dc098b081003eb03a8eed08f22ef",
       "sdk_tag": "3.07.C.2.0-0"
     },
+    "07121b9c9891147b47fa5a54e269e3bb96e6379768fe4e7c314524afab49d0e3": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-2311/ndwrt.config",
+      "config_sha256": "f02efe552d15b5a23836e0b5122c9ea71a26c90b8339c61a5d3941a9dba187ca",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2311",
+      "sdk_input_key": "07121b9c9891147b47fa5a54e269e3bb96e6379768fe4e7c314524afab49d0e3",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "071a9d9e8b8494ab2f66a9fd671f8c59dffe37fe208ba5bef91faf53458abc21": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -2317,6 +2336,25 @@
       "sdk_input_key": "090da73e92df16959919199d6cba00a267591ad3f9f804840ff9c7ac0ddf1b64",
       "sdk_ref": "a744635a6517267ac02c46efe3ba43d5146ffe9b",
       "sdk_tag": "4.02.C.1.0-1"
+    },
+    "09592d0ac785f58ad66fce1c58cbeee171c7e0ffb394ccae8c53029151e27b18": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-3811/ndwrt.config",
+      "config_sha256": "86ae203259a2f602f8a6ce0ad2245a82fccaaa5da02ca06217258cc82efbf165",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3811",
+      "sdk_input_key": "09592d0ac785f58ad66fce1c58cbeee171c7e0ffb394ccae8c53029151e27b18",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "096f8a2ce8cabeeda694361f230c709c209c49bbd27e08df5063b21884d89632": {
       "arch": "mipsel",
@@ -3496,6 +3534,25 @@
       "sdk_ref": "5ff3bfda8b7f38004f9fd6d4effc6bdaedf01e05",
       "sdk_tag": "4.03.C.3.0-3"
     },
+    "0d2c656f9d28e6eccb4d84d3547ecde614b2daffb25b098fed97c9be5caf7117": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-1721/ndwrt.config",
+      "config_sha256": "fba40ffb84d1bbb6ed0166707f8514027be8fcac975e8effaa752032ab033807",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1721",
+      "sdk_input_key": "0d2c656f9d28e6eccb4d84d3547ecde614b2daffb25b098fed97c9be5caf7117",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "0d45e9b68f56501df38a6c643bb0c987d9a2a42ff46fddf2220c4d07d0c34587": {
       "arch": "mips",
       "board": "en7512",
@@ -3628,6 +3685,25 @@
       "sdk_input_key": "0da7b0edf43a51d79ba6e9c574ff87e11120eac48334855a9c875ba163e87ec3",
       "sdk_ref": "a6d467cd1f59cb82d4c3002781614b9706388928",
       "sdk_tag": "3.07.B.0.0-0"
+    },
+    "0db5100ba12302f926cb6a2bb30c743ece73f73a9665dc7b73d324c73fd1f720": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-3310/ndwrt.config",
+      "config_sha256": "161f3c2e0bbf286e11f147c12e63d73b4af13150b4cd03fca81ecb464a242762",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3310",
+      "sdk_input_key": "0db5100ba12302f926cb6a2bb30c743ece73f73a9665dc7b73d324c73fd1f720",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "0dc1668d689de5fbf1eedbb5ca0dbf1546ec04539e5e51523d1610bd708b188d": {
       "arch": "mipsel",
@@ -4084,6 +4160,25 @@
       "sdk_input_key": "0fae79bdbe3197feee716f7cae00a3aa6d207230c035a07c6513f27ca3524c18",
       "sdk_ref": "9a45fa264ef9c0b99535fa99c1e6a6572711847a",
       "sdk_tag": "3.09.C.1.0-1"
+    },
+    "0fc74e240b04e1d388313f3ab9c1d27c17f99dc9078ca2124000f54770fde561": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-2310/ndwrt.config",
+      "config_sha256": "866db7815a1a85ccfecfafd755e734585955f3809ec5e40eb38505e1e32c2646",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2310",
+      "sdk_input_key": "0fc74e240b04e1d388313f3ab9c1d27c17f99dc9078ca2124000f54770fde561",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "0fd2267b92f94335a04ef1f88cb8bd7d00b05e97dca8ebb4090a09a0f1d50888": {
       "arch": "mipsel",
@@ -6460,6 +6555,25 @@
       "sdk_ref": "e0ea3bee72fbcbb3ba07a2bd9bb9ab6ed4003d7f",
       "sdk_tag": "3.08.C.4.0-0"
     },
+    "198e4ebaff44ca69b3aa3391e9a02cd4fce4a5ac7f7bd53f02070dddd5ccb7f4": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-1121/ndwrt.config",
+      "config_sha256": "2fb5acc6880b24881edb1f8bbaf67dcbe8d890fcac218898c263c1372f7edb70",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1121",
+      "sdk_input_key": "198e4ebaff44ca69b3aa3391e9a02cd4fce4a5ac7f7bd53f02070dddd5ccb7f4",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "19905cf8babcfb4e8026d4eb5425a2717d0e5b2dc953c8bfa7ecd00380d8501c": {
       "arch": "mips",
       "board": "en7512",
@@ -6858,6 +6972,25 @@
       "sdk_input_key": "1aa4f5c3206a03ba8024b0810e81093aaf56982862ad25a18bf8db5f7449274b",
       "sdk_ref": "a55bb1d41f128ad50b59377f8452f0d9f4d269ee",
       "sdk_tag": "3.07.B.1.0-0"
+    },
+    "1ab4e406b65bbd6aab134017f7217704ff10233a4079b5e43ab8a29fdbe988e7": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-4110/ndwrt.config",
+      "config_sha256": "1a345583432d97767c348275c6ecb0a9933ebb5f2e188c25d049b241798b80f6",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-4110",
+      "sdk_input_key": "1ab4e406b65bbd6aab134017f7217704ff10233a4079b5e43ab8a29fdbe988e7",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "1ad5755ec7cb6aa37926966036b72fe5452b0ec0e9d0a126eb11fb5ba4454f4a": {
       "arch": "mipsel",
@@ -7523,6 +7656,25 @@
       "sdk_input_key": "1d5594735986407163209518dfe02ac562e3ad1c9e62a7dc3ae335116cf2b67a",
       "sdk_ref": "da77dd075ffd499be2d616d24a4c8aa25c57a0cc",
       "sdk_tag": "3.07.C.3.0-2"
+    },
+    "1d66bbeff92670cb2ab342f2dc4e70232737b7aff692ca49bb1616a7bfe6de48": {
+      "arch": "aarch64",
+      "board": "mt7988",
+      "config": "target/linux/mt7988/KN-1812/ndwrt.config",
+      "config_sha256": "7d7e960bf14103433ec8f52e214c695bec4a8961ca19ec8fd1fcfac61565678d",
+      "input_identity": {
+        "board_makefile_sha256": "5a5aa060f0a6d2fed27c34eda70d6576355f62ddb177905c6e847c66f1b1889c",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1812",
+      "sdk_input_key": "1d66bbeff92670cb2ab342f2dc4e70232737b7aff692ca49bb1616a7bfe6de48",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "1d7a6e4752549c8b51e8991145433f81d72466bfd790fac3f3633f6624d57c97": {
       "arch": "mipsel",
@@ -8321,6 +8473,25 @@
       "sdk_input_key": "203e8e980247a013e9e796f9be38104fe8a4ad990e8701d4887f02ac31c7a352",
       "sdk_ref": "36991db95a29075dad737a7f7f8d2c5aab02ef6c",
       "sdk_tag": "4.00.B.1.0-0"
+    },
+    "204de742e4dbc8d8996a774c42b2995b9a068fcc59e86b3d6bb7a4c25c1eab7b": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-4010/ndwrt.config",
+      "config_sha256": "54b0c76880f81f266307eefddbe9afdfed80dcb3361bb75df5b9d7c8863b3e5f",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-4010",
+      "sdk_input_key": "204de742e4dbc8d8996a774c42b2995b9a068fcc59e86b3d6bb7a4c25c1eab7b",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "205230a324090318c45a6cfb3b2bb61c5b32ef22eb6ca33b8f85d8ae77ea9eb5": {
       "arch": "mipsel",
@@ -9385,6 +9556,25 @@
       "sdk_input_key": "252bab9334c9801d97e796a7c81d9adcaa07ee54a615fa45f143c6b2dd95c11a",
       "sdk_ref": "63bfc93bc94acf2cc64766dcc783da25568ae6a5",
       "sdk_tag": "3.08.B.2.0-2"
+    },
+    "2535ebc89f337e3ea904c119da71528b2fd3018b3e0e81e9691d760b7ad55343": {
+      "arch": "mips",
+      "board": "en7512",
+      "config": "target/linux/en7512/KN-2012/ndwrt.config",
+      "config_sha256": "ec0c066f761880daa1dcdb0e094314a034e9934924c89a2db6987b0f3e9959af",
+      "input_identity": {
+        "board_makefile_sha256": "682ae026b36cac3f4f28b4364889799175fb3524fd8894ede000a3ea250cf914",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2012",
+      "sdk_input_key": "2535ebc89f337e3ea904c119da71528b2fd3018b3e0e81e9691d760b7ad55343",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "2546f98c5a85491f0fb83994ab3799118f0ac2c991f5191aa5a90b4e884d9f79": {
       "arch": "mips",
@@ -10678,6 +10868,25 @@
       "sdk_ref": "1ae4432ae23d45d9e896931217fa24b521464f5e",
       "sdk_tag": "5.00.C.12.0-0"
     },
+    "2ab6bea206664a5bbb528e9f02f6426f0e1455c9396240205d18f57d864437d1": {
+      "arch": "mips",
+      "board": "en7516",
+      "config": "target/linux/en7516/KN-2112/ndwrt.config",
+      "config_sha256": "bb3ea34aa60025102174799ceece21a695dc5f162f40c273eaa955b78fb45104",
+      "input_identity": {
+        "board_makefile_sha256": "b7cf32c33b0a3eb4200743ee2f2d3d42e86bd2bb0509565b99a3ac827f7f0a6a",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2112",
+      "sdk_input_key": "2ab6bea206664a5bbb528e9f02f6426f0e1455c9396240205d18f57d864437d1",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "2ac0e958bfb99abdb88d94368db683eecb7b30a942a2152920a9f8721f47ec2f": {
       "arch": "mipsel",
       "board": "mt7621",
@@ -10905,6 +11114,25 @@
       "sdk_input_key": "2b37159ac009873f3ee605846187c7d228c855acfae848207e73c2084da4328d",
       "sdk_ref": "e0db3db60fc1a0f9c80b73b475c76fb2d48cef60",
       "sdk_tag": "4.00.C.4.0-0"
+    },
+    "2b8bcbc5235ef2ac2ae2dbae09ee5fa22183d1905a3261a481584873af2c9522": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-3210/ndwrt.config",
+      "config_sha256": "c54f2084f29a95ea437c44d08da42c9ff1ff95fc17784094b2f3824041bcb5ba",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3210",
+      "sdk_input_key": "2b8bcbc5235ef2ac2ae2dbae09ee5fa22183d1905a3261a481584873af2c9522",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "2baf034fb5136e61bbdd4dfe1107a4d07f8d171530d9e945b42e4e0b02ca0df1": {
       "arch": "mipsel",
@@ -12863,6 +13091,25 @@
       "sdk_ref": "13a1f8b046e2227d493bf8268274e97d8cc25cd7",
       "sdk_tag": "4.01.C.2.0-2"
     },
+    "33fe0fe8627e4525e0b549e57df53d446f016a84140ec81014b9275a803223a4": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-3911/ndwrt.config",
+      "config_sha256": "a1eee9dc08a500a189ebf047bad93d4989939d73609e759d21955d9c4d646413",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3911",
+      "sdk_input_key": "33fe0fe8627e4525e0b549e57df53d446f016a84140ec81014b9275a803223a4",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "34021c0b82afc250a778f800fe451b4905c1165c588460168a6afcdb99d9e0bd": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -14212,6 +14459,25 @@
       "sdk_ref": "1ae4432ae23d45d9e896931217fa24b521464f5e",
       "sdk_tag": "5.00.C.12.0-0"
     },
+    "39755c7803debbd98dab3d0c5a9c57f72bb20a2ec42ef58df1b7e228a4b0cfa4": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-1913/ndwrt.config",
+      "config_sha256": "5535e644a1b0e08b2d6f4db00c6076116a15dc96f8553f6a92364de522fc90de",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1913",
+      "sdk_input_key": "39755c7803debbd98dab3d0c5a9c57f72bb20a2ec42ef58df1b7e228a4b0cfa4",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "398aa16d1f867ec3f348eab042ec2bf58c09eb068212cc3d86636c64ad48e97e": {
       "arch": "mips",
       "board": "en7512",
@@ -14743,6 +15009,25 @@
       "sdk_input_key": "3af2143483cca390a555d1daf74b8a9a1d9b840a3e9b45cf2697d6b485aa1529",
       "sdk_ref": "f98347c9006ba61d66228aae2fc5e8ecff29f023",
       "sdk_tag": "3.07.C.4.0-0"
+    },
+    "3afb22cca2e7c43778d3237233cb343759503b60b1f7bec7b6b043ed07a3f678": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-1012/ndwrt.config",
+      "config_sha256": "4301bdce094a3045213b00dc36addb8f42c99b71f98567b539723c79fe61a6a0",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1012",
+      "sdk_input_key": "3afb22cca2e7c43778d3237233cb343759503b60b1f7bec7b6b043ed07a3f678",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "3b0889f27e2423a717f9cbadc2a4550c72e1d6283ced9cf43b3d456422f3dac5": {
       "arch": "mips",
@@ -17024,6 +17309,25 @@
       "sdk_ref": "b6c31fef5a780722560d0d7d4de8695d709fa715",
       "sdk_tag": "3.08.C.8.0-0"
     },
+    "43e52f9372a0a9ee2fa29bf74b62d9301784b4b653ef185724ad5fce203184d5": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-1011/ndwrt.config",
+      "config_sha256": "5d7d0a1960e272d8ace78b5aea4837126143581a9cdd7fabc36ff4da2f8223f8",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1011",
+      "sdk_input_key": "43e52f9372a0a9ee2fa29bf74b62d9301784b4b653ef185724ad5fce203184d5",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "43e940b669f861896acdb32617967d30ed5b33e465fe55c935ee1169f771be8c": {
       "arch": "mips",
       "board": "en7516",
@@ -17955,6 +18259,25 @@
       "sdk_ref": "1d58c10c46e270d6876836e5455fa4e9b786ad1e",
       "sdk_tag": "5.01.C.6.0-1"
     },
+    "479414d20e57d8b173295d2e586537647a0bf514150626646ba332e43501e468": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-1010/ndwrt.config",
+      "config_sha256": "a90743ae8cda027472383855a60f3be863b79474075046ce5882f31c009bc36a",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1010",
+      "sdk_input_key": "479414d20e57d8b173295d2e586537647a0bf514150626646ba332e43501e468",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "47ac5d9d3865fbbd88f603227ed5a18c290d40342b2b143cfa0fe20f6850f0a6": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -18486,6 +18809,25 @@
       "sdk_input_key": "498194d92efb3ca4f4c5b964d2345eeebb1e07e80e3e55d0ab60b255abd77e59",
       "sdk_ref": "f6534173921881f8b5e9ff83f075d2b0e0ca7f91",
       "sdk_tag": "3.09.C.0.0-0"
+    },
+    "49bd97154453afe466cf853a75cedafc7e435f0b298b0cf09e041a2871880148": {
+      "arch": "mips",
+      "board": "en7512",
+      "config": "target/linux/en7512/KN-2111/ndwrt.config",
+      "config_sha256": "060e5be173bea70f4848d7039b8c55848994fefcf2bc25e01f70b63a3d10cb95",
+      "input_identity": {
+        "board_makefile_sha256": "682ae026b36cac3f4f28b4364889799175fb3524fd8894ede000a3ea250cf914",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2111",
+      "sdk_input_key": "49bd97154453afe466cf853a75cedafc7e435f0b298b0cf09e041a2871880148",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "49be510e40e4e179ce86eca1ef7b7ff83f1003663d6f4f3228a3ec2fdd0dff26": {
       "arch": "mipsel",
@@ -19798,6 +20140,25 @@
       "sdk_ref": "5ff3bfda8b7f38004f9fd6d4effc6bdaedf01e05",
       "sdk_tag": "4.03.C.3.0-3"
     },
+    "4ec3cfbb7fde0029f69b8cf18c7deb512c00ba4a43d819ee8f118dd9ef2923eb": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-3510/ndwrt.config",
+      "config_sha256": "25c9e1f88972ff6ad3ac495f4678dd1d9b190433b7a4030cf5cd30f45c7c8d34",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3510",
+      "sdk_input_key": "4ec3cfbb7fde0029f69b8cf18c7deb512c00ba4a43d819ee8f118dd9ef2923eb",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "4ef26b53c2c4e3940094f7ed128f50a4b4198fbb0278036b77caa2639064c72d": {
       "arch": "mips",
       "board": "en7512",
@@ -20349,6 +20710,25 @@
       "sdk_ref": "639e9cb9803b801485b45a1329e5e3208327ff34",
       "sdk_tag": "4.02.C.6.3-1"
     },
+    "5121ef2a4dce61d6c07b101df255eed112bf3263726c470ccc8c65cd9c7c2989": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-2810/ndwrt.config",
+      "config_sha256": "26edd44ef778f1d0bbbc8e764423072b692b4183990fb47ff76767d69187507d",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2810",
+      "sdk_input_key": "5121ef2a4dce61d6c07b101df255eed112bf3263726c470ccc8c65cd9c7c2989",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "513ed10677a0ab0f964ebd1c8a1103e2d3972898ae634997cbfdaa1f1300976a": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -20443,6 +20823,25 @@
       "sdk_input_key": "51adbc2734bd3445f0e405a8b2d2e052af5b04c9ec180e22156675bf51379cbe",
       "sdk_ref": "2dee56c7385f84f387a9fd11cba9c7cd96c7b745",
       "sdk_tag": "3.09.C.3.0-0"
+    },
+    "51b18ce12bd7064b3509d18ca64636d94714fd16a413a96cea02e08180cb48f3": {
+      "arch": "mips",
+      "board": "en7516",
+      "config": "target/linux/en7516/KN-3610/ndwrt.config",
+      "config_sha256": "584bb059297963d6814faca4fbdbed81025515cb438278e74775be1cb27e05aa",
+      "input_identity": {
+        "board_makefile_sha256": "b7cf32c33b0a3eb4200743ee2f2d3d42e86bd2bb0509565b99a3ac827f7f0a6a",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3610",
+      "sdk_input_key": "51b18ce12bd7064b3509d18ca64636d94714fd16a413a96cea02e08180cb48f3",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "51b28caecf6d21ad484797d79186e41d4e0a3da014d69964a93d822a90d16761": {
       "arch": "mips",
@@ -21907,6 +22306,25 @@
       "sdk_ref": "34437804cb0f7a96347bc8ae46a51c50da597cd8",
       "sdk_tag": "3.07.A.9.0-0"
     },
+    "56f0c5ead2c93f4050e0022dc191c51576f3ea81eacc9cce50e22251d704971e": {
+      "arch": "mips",
+      "board": "en7512",
+      "config": "target/linux/en7512/KN-2011/ndwrt.config",
+      "config_sha256": "a71c15fdf58fd7627d24bd353653b41c156cccb6147c7330652de4519284d604",
+      "input_identity": {
+        "board_makefile_sha256": "682ae026b36cac3f4f28b4364889799175fb3524fd8894ede000a3ea250cf914",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2011",
+      "sdk_input_key": "56f0c5ead2c93f4050e0022dc191c51576f3ea81eacc9cce50e22251d704971e",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "56ffef3df8e768f1db9cbf590bad72ff2bf35fe54aa9531a3bf2561fb799b2c9": {
       "arch": "mipsel",
       "board": "mt7621",
@@ -22306,6 +22724,25 @@
       "sdk_ref": "f6534173921881f8b5e9ff83f075d2b0e0ca7f91",
       "sdk_tag": "3.09.C.0.0-0"
     },
+    "582cb930de5439e0b16296f7722f6a4771176fce55ce56a251b61b5ebaafeedb": {
+      "arch": "mips",
+      "board": "en7512",
+      "config": "target/linux/en7512/KN-2013/ndwrt.config",
+      "config_sha256": "025a77a35c657e69cdcfac199244596470650f7899b31a64a3e121da6d70d389",
+      "input_identity": {
+        "board_makefile_sha256": "682ae026b36cac3f4f28b4364889799175fb3524fd8894ede000a3ea250cf914",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2013",
+      "sdk_input_key": "582cb930de5439e0b16296f7722f6a4771176fce55ce56a251b61b5ebaafeedb",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "583d54bc746c7fab872208fc7353bcc29039af5f943fbbc3c91178fa31ebf474": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -22666,6 +23103,25 @@
       "sdk_input_key": "592d3ed786349fcaf2fd6fc06cae1b68b59c9a81a2019f7ee8280d534e89f7a1",
       "sdk_ref": "98b326bb7b11f3eac7500dda4fd50e9dd9f6b2a9",
       "sdk_tag": "3.07.C.4.0-1"
+    },
+    "5943767406508e5b59ce6c9bd55b4784dfbac4545eede4fc4e3344d3b7e75197": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-3611/ndwrt.config",
+      "config_sha256": "785b7d731c8c132b214d48ce51ae9a4c0c2a2b628d5fb5278d71e6ebeed2a5ec",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3611",
+      "sdk_input_key": "5943767406508e5b59ce6c9bd55b4784dfbac4545eede4fc4e3344d3b7e75197",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "59486ef3c5fc6d8320df505ec78e00d26d9f31a835a1e3a5e9b4689372c19ca8": {
       "arch": "mipsel",
@@ -23617,6 +24073,25 @@
       "sdk_ref": "509778ae23e8a957c91cb1865e68d70deab026d5",
       "sdk_tag": "3.09.B.2.0-1"
     },
+    "5d1bedd47854e451ae4153bc7f407f60e5b521320bebe42ad9a849cab14286be": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-1910/ndwrt.config",
+      "config_sha256": "3fe396edf051bb73a03df6525c74a2a207bdede8811ca91380cf71f8bf0c2698",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1910",
+      "sdk_input_key": "5d1bedd47854e451ae4153bc7f407f60e5b521320bebe42ad9a849cab14286be",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "5d3903e3f83630fee572affaa78c13cf0cbeed212654848ebea25465f0267c4c": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -24262,6 +24737,25 @@
       "sdk_input_key": "5fcc2176e0280f696dd7c613282976098ef30582fe8e3ab1f1c32fe40492690c",
       "sdk_ref": "607d09738ef47fce13c2fd8bb2696e671d16b583",
       "sdk_tag": "3.09.B.2.0-0"
+    },
+    "5fe1d0a1ee5ebb419af47e7e99f9d43daa51b61669c928cf9a86e50270edaacf": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-1111/ndwrt.config",
+      "config_sha256": "19a615fd62371f354ae4852fdb1a136b828ea331bdd9d7ed98c47aa2bfd646dc",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1111",
+      "sdk_input_key": "5fe1d0a1ee5ebb419af47e7e99f9d43daa51b61669c928cf9a86e50270edaacf",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "60093f98f1cc2c60ca4965d22ba58595799901965100a333fa73c9325a0b5334": {
       "arch": "mipsel",
@@ -25954,6 +26448,25 @@
       "sdk_ref": "45af85c0d3ae09bd58dc185753836451ed3c9c83",
       "sdk_tag": "3.09.C.1.0-0"
     },
+    "66ba02ccc9084fec643175d225ef8a06c28d0cf4c690e8c3f58146fe08bb40fa": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-3010/ndwrt.config",
+      "config_sha256": "ec134b58f1a93bc95bb76d53494c8ba124142a17f37791d42c73c919c02d4dd6",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3010",
+      "sdk_input_key": "66ba02ccc9084fec643175d225ef8a06c28d0cf4c690e8c3f58146fe08bb40fa",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "66bc675ac341e8446b3b26851536765efd01bb1331bfe50b0d9182d7984e23f3": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -27056,6 +27569,25 @@
       "sdk_ref": "57df873d20e5004e0fb95e6e80c4b9d4df2c9517",
       "sdk_tag": "4.01.C.7.0-1"
     },
+    "6b28ec478d8a1dc33dd7f44fd66294633575aced0805c41921fc71bf6401a735": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-2610/ndwrt.config",
+      "config_sha256": "fdf46869656b7ec209a5abc030977c6584a837cd05cd8c90f6d47704c70d7d20",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2610",
+      "sdk_input_key": "6b28ec478d8a1dc33dd7f44fd66294633575aced0805c41921fc71bf6401a735",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "6b3de32333408662d499a7f4477cf655c16ad2cb46271d22421db0c7a594cd43": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -28005,6 +28537,44 @@
       "sdk_input_key": "6f1e14543178d9d246bfc1fcfe4360f9bba531fc412811fd321c3b743c172daf",
       "sdk_ref": "0ce0971e1ccd8a5e0c5cd49642b24a4614be2d05",
       "sdk_tag": "3.07.B.0.0-1"
+    },
+    "6f3f6ea8e4aedf705cd6b46508081d552a16dfcfc59017fb88e2ee17c2099f07": {
+      "arch": "aarch64",
+      "board": "mt7622",
+      "config": "target/linux/mt7622/KN-2710/ndwrt.config",
+      "config_sha256": "b5ffc5f25708f8368f157339171234423981cc370315d7f4d4b3a5a46c4fcded",
+      "input_identity": {
+        "board_makefile_sha256": "c7d8a240d25e9b26c9228e442a029153b9f978f8046689840ee8af7c8db2c581",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2710",
+      "sdk_input_key": "6f3f6ea8e4aedf705cd6b46508081d552a16dfcfc59017fb88e2ee17c2099f07",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
+    "6f4869e0ad48f52e53036fa8c6cf40e5393f37fff0ea84fa5f4ca30639af1184": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-1221/ndwrt.config",
+      "config_sha256": "7cf2a8200e4ed1730a02c7130f5f65f27053ee578560ecc092c9d811f6d376a0",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1221",
+      "sdk_input_key": "6f4869e0ad48f52e53036fa8c6cf40e5393f37fff0ea84fa5f4ca30639af1184",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "6f4adaff86b6b790e84477eb11d8c8a91db1ea12ed685e38f0de00d387f52d2d": {
       "arch": "mipsel",
@@ -29640,6 +30210,25 @@
       "sdk_ref": "728a344d2e9c4e4097a1ab61c60bc9d746370ddd",
       "sdk_tag": "4.00.C.6.0-0"
     },
+    "755a85b0616b9241ebd498f5cace62a445880ba497e55ca6c133da0b92e62208": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-1213/ndwrt.config",
+      "config_sha256": "d650c8c4b38c4d7f9703aecbf9a0bd042af1f1286ef44203364fe548933e4ce1",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1213",
+      "sdk_input_key": "755a85b0616b9241ebd498f5cace62a445880ba497e55ca6c133da0b92e62208",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "7565bf0d24e971f1593f63c589cf2d00f449f25db3861447391eae2f492535af": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -30647,6 +31236,25 @@
       "sdk_ref": "5b3302662607380dca48c5fe2b1b112d46c02dc9",
       "sdk_tag": "4.00.C.4.0-2"
     },
+    "799dd8c15ee30262585d080a702714275f26402bfee00e02b35eb5c13df4b0d1": {
+      "arch": "mips",
+      "board": "en7516",
+      "config": "target/linux/en7516/KN-2410/ndwrt.config",
+      "config_sha256": "8de88ea69ebc336a19253957dca8944fe5aa7b5be57a49dfc1a831e9cabeb98b",
+      "input_identity": {
+        "board_makefile_sha256": "b7cf32c33b0a3eb4200743ee2f2d3d42e86bd2bb0509565b99a3ac827f7f0a6a",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2410",
+      "sdk_input_key": "799dd8c15ee30262585d080a702714275f26402bfee00e02b35eb5c13df4b0d1",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "79aa1b775b2d76878476675eeefe245ba8b5467eae13940e31a929134d8a1fe0": {
       "arch": "mipsel",
       "board": "mt7621",
@@ -30913,6 +31521,25 @@
       "sdk_ref": "fc3518e43e298ce03d4bc4af19e8096200b67fd3",
       "sdk_tag": "3.07.A.8.0-1"
     },
+    "7a6105947b119e9d8eab1f2802a6e3fafae870ab1547ba8690932d6cb14598d6": {
+      "arch": "mips",
+      "board": "en7516",
+      "config": "target/linux/en7516/KN-2510/ndwrt.config",
+      "config_sha256": "903434e0210030f5b0ccfbe28b258bc0f6f4c17d64563227a62f2c451176ccd5",
+      "input_identity": {
+        "board_makefile_sha256": "b7cf32c33b0a3eb4200743ee2f2d3d42e86bd2bb0509565b99a3ac827f7f0a6a",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2510",
+      "sdk_input_key": "7a6105947b119e9d8eab1f2802a6e3fafae870ab1547ba8690932d6cb14598d6",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "7a6acab1e2083e0a82dc0f3c8fed626e91ab4827f4fb382ec85e015915bf69a0": {
       "arch": "mips",
       "board": "en7516",
@@ -31007,6 +31634,25 @@
       "sdk_input_key": "7addafc9140f8b0ce5023b6701b73e984bded4877ddd4d4412cf615357e18dce",
       "sdk_ref": "fff5cef4ab9505275b9ac48616c665d01085204e",
       "sdk_tag": "3.08.C.4.0-1"
+    },
+    "7ae22c379276ad7fd71edbd0c5113c454b3a0f03c41c9e781717a28d34c543a7": {
+      "arch": "mipsel",
+      "board": "en7528",
+      "config": "target/linux/en7528/KN-3012/ndwrt.config",
+      "config_sha256": "a00e89a633a44f3c33c385ab1bc8d0a2450bc58b4032d283c138a0a0487ac591",
+      "input_identity": {
+        "board_makefile_sha256": "a7c7b56293f58828aec129f79aef6b965f3bd08226c11842d66e35b0d5c1ffd4",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3012",
+      "sdk_input_key": "7ae22c379276ad7fd71edbd0c5113c454b3a0f03c41c9e781717a28d34c543a7",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "7ae4bdac246876d29eb241796aaa105f167fbf88fd16f194d0210ba4fe744693": {
       "arch": "mipsel",
@@ -32546,6 +33192,25 @@
       "sdk_input_key": "80244cffb2f674ac18649fa49b4b73758b165e92bf67bd337205e5dc94527c62",
       "sdk_ref": "ed626edd48cb7dcbab747226503ac90f1073bcce",
       "sdk_tag": "4.01.C.0.0-0"
+    },
+    "8033f836fb7c954cf0a34167da9902e402a1d35d0e9ea5b89da1f1945d4d90e4": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-1621/ndwrt.config",
+      "config_sha256": "c46a9d3ca7a94e174891ded49762b5ffcb59d46db16c8722f352b7ced4f60c79",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1621",
+      "sdk_input_key": "8033f836fb7c954cf0a34167da9902e402a1d35d0e9ea5b89da1f1945d4d90e4",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "80347caebe77afdbbace6d62b935763bb5d3c440c0709fdaa38378af1b175c94": {
       "arch": "mips",
@@ -34637,6 +35302,25 @@
       "sdk_ref": "1445bf185585c8197624c89b81427aacd6504722",
       "sdk_tag": "4.00.C.0.0-2"
     },
+    "882873c6f54fa441314cab99bb5c2fc7bd73d0b3efa502cdafafa9bab1588725": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-3411/ndwrt.config",
+      "config_sha256": "f48b1e2405855d1730617ee4a7509f49abd58b34cb2a7b47949e0b99d0e7d760",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3411",
+      "sdk_input_key": "882873c6f54fa441314cab99bb5c2fc7bd73d0b3efa502cdafafa9bab1588725",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "8837267ce0c27848732bd9fbe10d44091e9d1ec0b9b99475deb942d4c8fe163f": {
       "arch": "mipsel",
       "board": "mt7621",
@@ -35834,6 +36518,25 @@
       "sdk_ref": "6822ec698bab83a65ab3c576bbd9dc727d2888cf",
       "sdk_tag": "3.07.B.6.0-0"
     },
+    "8cc6cf88f065aa5ce7c37097f9ad0808a4396a46e7c2ddbfdd42e9653db69a6f": {
+      "arch": "aarch64",
+      "board": "mt7622",
+      "config": "target/linux/mt7622/KN-1811/ndwrt.config",
+      "config_sha256": "e0257bb605d92b7c2f85ebb9689f065397c071e59c5963e1fae18bc91e3a0e69",
+      "input_identity": {
+        "board_makefile_sha256": "c7d8a240d25e9b26c9228e442a029153b9f978f8046689840ee8af7c8db2c581",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1811",
+      "sdk_input_key": "8cc6cf88f065aa5ce7c37097f9ad0808a4396a46e7c2ddbfdd42e9653db69a6f",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "8cddf71e4d4efcf0564cfb928fcca4a24f0597aa5acc8fa04bcb19e48c696f54": {
       "arch": "mipsel",
       "board": "mt7621",
@@ -35871,6 +36574,25 @@
       "sdk_input_key": "8cf98ad859be41b8b9f8a4b8cd17f9c1963b63132722763c4545cb8d4d4a9657",
       "sdk_ref": "1d58c10c46e270d6876836e5455fa4e9b786ad1e",
       "sdk_tag": "5.01.C.6.0-1"
+    },
+    "8cfa253b4cc86db72a512006c75d38de03d9da4e077a84cd1bff35801be96214": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-2312/ndwrt.config",
+      "config_sha256": "fc61f275e384e09663cc3d8fe4f958236d2ae1ffccc084d9ef33dbabadd62b4d",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2312",
+      "sdk_input_key": "8cfa253b4cc86db72a512006c75d38de03d9da4e077a84cd1bff35801be96214",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "8d0f2d3b774e1d9e1c40bab23675ecdf50bd7798dfa8b04612f81e6ed4c12659": {
       "arch": "aarch64",
@@ -36004,6 +36726,25 @@
       "sdk_input_key": "8da30f67b5df34da422dde4bd235d333d8718ab7f78ecb2249431e0e4fa28627",
       "sdk_ref": "685bfe0bdff56d56c40a225d4b76cf12c09d709e",
       "sdk_tag": "3.07.A.4.0-0"
+    },
+    "8daac91382ea5b87d9edf65814a56ea92ab3c7ea2cfc8943cdd20900192d87fb": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-2211/ndwrt.config",
+      "config_sha256": "58b5a4ccd40a352af4c29c0a26032f5c169b4657277d437cb04f27c9c69fed80",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2211",
+      "sdk_input_key": "8daac91382ea5b87d9edf65814a56ea92ab3c7ea2cfc8943cdd20900192d87fb",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "8db0b6636c7b4bf657a16a31b21599d77f8b0331d02ea8edf4452983a24b0029": {
       "arch": "mips",
@@ -38075,6 +38816,25 @@
       "sdk_input_key": "954da423066be5bbbfbd7433c3e326b6411ddf8fd23d4b53ad0a9c26646c7605",
       "sdk_ref": "728a344d2e9c4e4097a1ab61c60bc9d746370ddd",
       "sdk_tag": "4.00.C.6.0-0"
+    },
+    "9570031586d07cee7f3358467c0f04a03691454fa72e32a7a08c12ae16b10136": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-4910/ndwrt.config",
+      "config_sha256": "e3fb74f336549ea96e92325eb246e801da7cea3148fe6301412ab9442dbebf19",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-4910",
+      "sdk_input_key": "9570031586d07cee7f3358467c0f04a03691454fa72e32a7a08c12ae16b10136",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "957c7e309aa342be15c65adc3f745dbfd10e26bc40733d5049eed0923e1492e6": {
       "arch": "mips",
@@ -41192,6 +41952,25 @@
       "sdk_ref": "6be13d11da3e99455bace20ef7de99320c63a863",
       "sdk_tag": "4.00.C.4.0-1"
     },
+    "a02e7dfb4867cbb561406308f0ccf47114d7bacfa15b9db1a69de811d9f7ea59": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-3410/ndwrt.config",
+      "config_sha256": "91e40a616295bf33bee17fad43ca0e8c8dc46bda979a930d497193f9a8f778ae",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3410",
+      "sdk_input_key": "a02e7dfb4867cbb561406308f0ccf47114d7bacfa15b9db1a69de811d9f7ea59",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "a04c3fc061e6c5a6f15f9f2502ad0a292386c6eb0a31ec262e3349e2b40f1d0a": {
       "arch": "mipsel",
       "board": "en7528",
@@ -41324,6 +42103,25 @@
       "sdk_input_key": "a0cd3ef079598886b66edceeee95ab12641b467d6ef4d91391b6b21d09bdb42c",
       "sdk_ref": "6822ec698bab83a65ab3c576bbd9dc727d2888cf",
       "sdk_tag": "3.07.B.6.0-0"
+    },
+    "a0ec7c1d2f37575a3113bc2eb8985ca113bc1c7052efe3ee18457e9cd6a337a3": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-2210/ndwrt.config",
+      "config_sha256": "4b9dcf1c0d0d4fe1226b7da41ef7770b0c0e18031822ee3f09dde2d8418eceb2",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2210",
+      "sdk_input_key": "a0ec7c1d2f37575a3113bc2eb8985ca113bc1c7052efe3ee18457e9cd6a337a3",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "a0ecae36be99133d2cbc0b382db19d90b6c39be618d066cd85a1f9cdf1a94ddf": {
       "arch": "aarch64",
@@ -41685,6 +42483,25 @@
       "sdk_input_key": "a22e516f9c495b07433dbf489ab80fc8cad3322360e3755e01dbd8e2dedab989",
       "sdk_ref": "fc3518e43e298ce03d4bc4af19e8096200b67fd3",
       "sdk_tag": "3.07.A.8.0-1"
+    },
+    "a23bf14a9bcdaa91d89bd7fdb9516cbc03f3cce7937d18aefd0af794eebc4645": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-2212/ndwrt.config",
+      "config_sha256": "c0381a6f915e3463308b90c5613613bd825c589ac0f0492f2ef5bfca4ee7aa44",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2212",
+      "sdk_input_key": "a23bf14a9bcdaa91d89bd7fdb9516cbc03f3cce7937d18aefd0af794eebc4645",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "a23dcf47b8dee1a20f54e3d7f93b1a2603da8e761a298a751fb72045f1b9c583": {
       "arch": "mipsel",
@@ -45030,6 +45847,25 @@
       "sdk_ref": "fba40155d8a036b82041f123f27eb745d9ce7745",
       "sdk_tag": "3.08.C.5.0-2"
     },
+    "af4e4529bca79e9a07ecb1934e98f0aa38bc99c793625e1fffdd5948b5c0fb7a": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-1714/ndwrt.config",
+      "config_sha256": "9a406ca653bf8199800a5b09121d3d29b6423b6a99338a026c2c694badc4dab5",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1714",
+      "sdk_input_key": "af4e4529bca79e9a07ecb1934e98f0aa38bc99c793625e1fffdd5948b5c0fb7a",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "af66168e6379d785aa36554f48206ad06ed9c99986632194f184c636110bc640": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -45523,6 +46359,25 @@
       "sdk_input_key": "b0f311f4761b7d24eec839c67adfcb8f068b258a35646a6950c74b375fdf2e5b",
       "sdk_ref": "03016b47130cd112be325af8cccbfc6e3cb59883",
       "sdk_tag": "3.09.C.1.0-3"
+    },
+    "b0ffa305fde5fdba1879d2069c5951c355f0c011439133c7045a1c4e11461be5": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-1810/ndwrt.config",
+      "config_sha256": "5b6d9feff3497522c631972ba2103ce9ddd6fd4b01857681ab1b4350a88fd369",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1810",
+      "sdk_input_key": "b0ffa305fde5fdba1879d2069c5951c355f0c011439133c7045a1c4e11461be5",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "b101098129abe2a2ea126e751c50e87a710e01dbc83ad98cfb312d18583851b0": {
       "arch": "mips",
@@ -48336,6 +49191,25 @@
       "sdk_ref": "b39162f78d1e4a88a5e01868858c054845e8ab57",
       "sdk_tag": "4.01.C.5.0-0"
     },
+    "bd0acf61fdd6d43e5ec926ac89a6e4a55c9f62ba97476887712d9eeb6fd3d29d": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-3812/ndwrt.config",
+      "config_sha256": "a58e936229b3f09758ba656e513da9683782124492c955675bdd6f6c9ac95480",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3812",
+      "sdk_input_key": "bd0acf61fdd6d43e5ec926ac89a6e4a55c9f62ba97476887712d9eeb6fd3d29d",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "bd1f92490bc9896f9aeaf6cc6960b0fe08138a0aa8a7253aef6af009f733a7a7": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -48487,6 +49361,25 @@
       "sdk_input_key": "bda0a628659d9b0bdaf3b1d878f55b96e7b9faaab6511b1270c2ef09cfbf2bd0",
       "sdk_ref": "728a344d2e9c4e4097a1ab61c60bc9d746370ddd",
       "sdk_tag": "4.00.C.6.0-0"
+    },
+    "bdab6baac240c1d1c7fe112109349d8bb7b1ce421a139534558daa2d8a5cc15e": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-3711/ndwrt.config",
+      "config_sha256": "28cd70a4271ae0759e01f1078c81b1c524f108b313128adf7478f1dec766f32b",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3711",
+      "sdk_input_key": "bdab6baac240c1d1c7fe112109349d8bb7b1ce421a139534558daa2d8a5cc15e",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "bdae5da26b9748144b3bf100a70ed058e1b78b7a916354afe5226e7401848fb9": {
       "arch": "mipsel",
@@ -49552,6 +50445,25 @@
       "sdk_ref": "b6c31fef5a780722560d0d7d4de8695d709fa715",
       "sdk_tag": "3.08.C.8.0-0"
     },
+    "c1328119831e3f56861925d38d69fac4535d3be0468ff4dce05673bd13eccc7c": {
+      "arch": "mips",
+      "board": "en7512",
+      "config": "target/linux/en7512/KN-2110/ndwrt.config",
+      "config_sha256": "9a46634c057c04c459c039698e87f2b5c2eb4203a9c74ad97599bb8330412403",
+      "input_identity": {
+        "board_makefile_sha256": "682ae026b36cac3f4f28b4364889799175fb3524fd8894ede000a3ea250cf914",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2110",
+      "sdk_input_key": "c1328119831e3f56861925d38d69fac4535d3be0468ff4dce05673bd13eccc7c",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "c1446c5f110b662644f9c5359f9289c0c4ffe6b283dcbf1eff840abe01435f7a": {
       "arch": "mipsel",
       "board": "en7528",
@@ -50064,6 +50976,25 @@
       "sdk_input_key": "c2e4172b22a1532f582a72090427fd3eb69fcdcecec99df9d5209b8b1298281e",
       "sdk_ref": "f6534173921881f8b5e9ff83f075d2b0e0ca7f91",
       "sdk_tag": "3.09.C.0.0-0"
+    },
+    "c2e562393f96940104e7b634dff71f99b914a90947d642b5d1d72e13ffa69908": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-1613/ndwrt.config",
+      "config_sha256": "26da667614f2225a4191086a45a30c99d8f2c6c11fcfd42d547cf97ac31ab563",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1613",
+      "sdk_input_key": "c2e562393f96940104e7b634dff71f99b914a90947d642b5d1d72e13ffa69908",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "c2f0d73caf634f1faedd09c90c5fdb29cc2b867b61950513b9fde84ae15b5681": {
       "arch": "mipsel",
@@ -52022,6 +52953,25 @@
       "sdk_ref": "509778ae23e8a957c91cb1865e68d70deab026d5",
       "sdk_tag": "3.09.B.2.0-1"
     },
+    "ca0d50783f1f79aafb2222c5a000f065d2c9fb38ff50916a148bb1478b8463a3": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-1212/ndwrt.config",
+      "config_sha256": "e402c910a92819998f52cf814b97a4f68b73e33a74af01d3691205044bd33d03",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1212",
+      "sdk_input_key": "ca0d50783f1f79aafb2222c5a000f065d2c9fb38ff50916a148bb1478b8463a3",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "ca276e954bfdd42693fb1a198718bc1899ab29da249197fb484f33cfae5213e1": {
       "arch": "mips",
       "board": "en7512",
@@ -53390,6 +54340,25 @@
       "sdk_ref": "0d3f6e1607af5a7ca17da29147e7ebe36f803a6a",
       "sdk_tag": "3.07.A.14.0-0"
     },
+    "d07cc6e7a566277c31d00c635ef125939a1dc39c2ee2dcba70b16e47158cabb5": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-4410/ndwrt.config",
+      "config_sha256": "f78e5ddde25e26338032acf4ff49b4c339d52e1215cd054658298fc68403f1a7",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-4410",
+      "sdk_input_key": "d07cc6e7a566277c31d00c635ef125939a1dc39c2ee2dcba70b16e47158cabb5",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "d088c92a250270cd382e43569f3ec8c36f2b3c323ddafe8b49383faccd33354c": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -53465,6 +54434,25 @@
       "sdk_input_key": "d0c83b196708a2ac79951cca96f887a76d4022d639e568779e44ebd38e3c9825",
       "sdk_ref": "9a45fa264ef9c0b99535fa99c1e6a6572711847a",
       "sdk_tag": "3.09.C.1.0-1"
+    },
+    "d0c8498c1d08e48df2990a65b4ee838b69ad53b3851b4c67961faadddb11cce4": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-2911/ndwrt.config",
+      "config_sha256": "f76aed8da65eb1aea84cf5404ebe3848260de1260bddd95b860ae2d4b1c2bb76",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2911",
+      "sdk_input_key": "d0c8498c1d08e48df2990a65b4ee838b69ad53b3851b4c67961faadddb11cce4",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "d0d1617048d3f1d5b18fee44988ff61446e188119668fea8a63f1a8136b2f479": {
       "arch": "mipsel",
@@ -54168,6 +55156,25 @@
       "sdk_input_key": "d3a8a7a592a11891be88700d7573181d29a669b11907b9d54e772a06e70d92c1",
       "sdk_ref": "607d09738ef47fce13c2fd8bb2696e671d16b583",
       "sdk_tag": "3.09.B.2.0-0"
+    },
+    "d3a9026cfc0a0ccf344bae824d74442e08e9142ce30863cc6a66a6f11f43dc69": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-1112/ndwrt.config",
+      "config_sha256": "3afddc796ba5f43f6fea5850f7ee021e29b823cfeea5625a46babbff7225ad2b",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1112",
+      "sdk_input_key": "d3a9026cfc0a0ccf344bae824d74442e08e9142ce30863cc6a66a6f11f43dc69",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "d3b1ae3c650a25dd9be5afe278ce79f29f10de05600ce5b72fd85be3eed0e21d": {
       "arch": "mipsel",
@@ -55841,6 +56848,25 @@
       "sdk_ref": "f6534173921881f8b5e9ff83f075d2b0e0ca7f91",
       "sdk_tag": "3.09.C.0.0-0"
     },
+    "d9cfc8b2d06c85131a6a6175f30916fd2c0fae05c17144a37f2214f6ec4f5af5": {
+      "arch": "mips",
+      "board": "en7516",
+      "config": "target/linux/en7516/KN-2113/ndwrt.config",
+      "config_sha256": "77fab7b26b83079c04bda6b8007a92f66c2799f519b9ac1572f89ef374313402",
+      "input_identity": {
+        "board_makefile_sha256": "b7cf32c33b0a3eb4200743ee2f2d3d42e86bd2bb0509565b99a3ac827f7f0a6a",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2113",
+      "sdk_input_key": "d9cfc8b2d06c85131a6a6175f30916fd2c0fae05c17144a37f2214f6ec4f5af5",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "d9f7eed0bfe7756bb75eed8ef453c31ac7dfe01155ff7300ca2925af8363db89": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -55878,6 +56904,25 @@
       "sdk_input_key": "d9ff15f78bd3c1141be8b7854f07cb269f931ade34127694f5aed2bf6383deb7",
       "sdk_ref": "509778ae23e8a957c91cb1865e68d70deab026d5",
       "sdk_tag": "3.09.B.2.0-1"
+    },
+    "da06da8c4c2d89bfae21c5d3a6f6ec62e056e542ca97f9725ac3522369e387b1": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-1713/ndwrt.config",
+      "config_sha256": "f758f9cd037d648076e4bbcb7b08a8c7969312a4f57028d76d5663ab7767de58",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1713",
+      "sdk_input_key": "da06da8c4c2d89bfae21c5d3a6f6ec62e056e542ca97f9725ac3522369e387b1",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "da3488da609a60b2cfbad18e82550db9913a31ae7f37f7e15cfe955997b5069c": {
       "arch": "mipsel",
@@ -56334,6 +57379,25 @@
       "sdk_input_key": "db7a6722001f86bd2c5be02a0ee02b210c9345be2e05977d82da50721cac495b",
       "sdk_ref": "85138ad4e5f002ca03a2b716d04252a9f2adf761",
       "sdk_tag": "3.09.C.6.0-2"
+    },
+    "db8ce1c8af160bd9e877bf624cf31bdd28e269e3f801019852d2b25f058fcca1": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-2313/ndwrt.config",
+      "config_sha256": "868165ee9c2b6c7cf8f2022f2995d99694302e32996ca0dac9489250bc96f35a",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2313",
+      "sdk_input_key": "db8ce1c8af160bd9e877bf624cf31bdd28e269e3f801019852d2b25f058fcca1",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "db9a86994c15094e6d4eca5de68caef98f9391a09e33596605bdee92c8910aba": {
       "arch": "mips",
@@ -57094,6 +58158,25 @@
       "sdk_input_key": "de2de999297108c01ea5cd2ba3c7a2fabb61a9d8d7b36e8d031ff8f4fe1c9f39",
       "sdk_ref": "dff8f100d690b9cacbcf46a190cf9832c7b5d74e",
       "sdk_tag": "3.07.B.0.0-4"
+    },
+    "de381fa1f58a70ad14f1f8150fd516872e97400713c463f1e2dd536ad24291b8": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-3910/ndwrt.config",
+      "config_sha256": "54b436b084f85d041966f4d539817e3bfc576e38469a42aaf1c0b54fd10d9fe8",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3910",
+      "sdk_input_key": "de381fa1f58a70ad14f1f8150fd516872e97400713c463f1e2dd536ad24291b8",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "de42aef090a61531d651e830731bb192487e1af32cfe7e1c56af796bd1b6a2c3": {
       "arch": "mipsel",
@@ -58501,6 +59584,25 @@
       "sdk_ref": "cf20ac739eac0cbd4076248c2e2ca705986e49e3",
       "sdk_tag": "5.00.C.12.1-1"
     },
+    "e2bd28ff0baa7ef4a4c2614920bf0f0f08ad44d01136d8978e4b806a01599ae2": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-2910/ndwrt.config",
+      "config_sha256": "8e7098cdcf0cbc5a2dd971f011d784f9f1c3157b50c1bdc6c35d9a4f62e2b723",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2910",
+      "sdk_input_key": "e2bd28ff0baa7ef4a4c2614920bf0f0f08ad44d01136d8978e4b806a01599ae2",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "e2c36bedd03f4acc48097d7980e79335e74ef3b3d2b87416ee4e9311ea1a63e1": {
       "arch": "mipsel",
       "board": "mt7621",
@@ -58956,6 +60058,25 @@
       "sdk_input_key": "e4a52290b97ce01d5687c009f6c4b801c8a534203d3f032e5ef5438b720e6a76",
       "sdk_ref": "71973c67b9e0cfe3cab233f6dc1c33144cdf4a4b",
       "sdk_tag": "3.09.C.7.0-0"
+    },
+    "e4a5b9db0b7504be9278b1d5f1ed4192e569cd7eb2211e5845be803dc10eeaaf": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-1211/ndwrt.config",
+      "config_sha256": "9b234c22e8973ea032f97d06c72719a15718ca5faa89373449b267e670d93595",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1211",
+      "sdk_input_key": "e4a5b9db0b7504be9278b1d5f1ed4192e569cd7eb2211e5845be803dc10eeaaf",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "e4cda885e215c971f3f4d43417354fb040811fc7b242b023ac76be35c47b12c2": {
       "arch": "mipsel",
@@ -59431,6 +60552,25 @@
       "sdk_input_key": "e72976aca8ddaa0e90c3edcc0914f7fa4f1d90c9b2745dc91790fab423e386ad",
       "sdk_ref": "5dee6c97750765766e7a84561c9f4c71d868ff5c",
       "sdk_tag": "4.00.B.2.0-1"
+    },
+    "e73a4aef241790910b00eae7ed587aa826aa6bbe13a0c1f9fc198321140b3e32": {
+      "arch": "aarch64",
+      "board": "mt7988",
+      "config": "target/linux/mt7988/KN-4210/ndwrt.config",
+      "config_sha256": "eb850edf3f7f6942daa2ce8955b58e63a85e6614105f2afd5dc23766b73d0795",
+      "input_identity": {
+        "board_makefile_sha256": "5a5aa060f0a6d2fed27c34eda70d6576355f62ddb177905c6e847c66f1b1889c",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-4210",
+      "sdk_input_key": "e73a4aef241790910b00eae7ed587aa826aa6bbe13a0c1f9fc198321140b3e32",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "e7472724df37d531d5138843932f381d966695657feff4cf00dc5ad862f1bf63": {
       "arch": "mipsel",
@@ -60761,6 +61901,44 @@
       "sdk_input_key": "eb9a80fe824475468d606449b97a99b6e4548dc2428f28ae05708e273808537e",
       "sdk_ref": "03016b47130cd112be325af8cccbfc6e3cb59883",
       "sdk_tag": "3.09.C.1.0-3"
+    },
+    "eb9ea68f2abd771185b89653eafa348ec2d6f13e91b05c40c39d3059ba013716": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-3311/ndwrt.config",
+      "config_sha256": "df25357d192e3ee360d680669a2e3c05b50ab9e8d9e9d02606854eb5f67e057e",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3311",
+      "sdk_input_key": "eb9ea68f2abd771185b89653eafa348ec2d6f13e91b05c40c39d3059ba013716",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
+    "ebd63d707802244b80edb50e320983787a33faffe7ad1c6d5b9fa1947870f15b": {
+      "arch": "mipsel",
+      "board": "mt7621",
+      "config": "target/linux/mt7621/KN-3013/ndwrt.config",
+      "config_sha256": "de6581c3e58cc1c340d4b3ef756a07bad0090eef57ad61b2861eb72d759982ae",
+      "input_identity": {
+        "board_makefile_sha256": "41a66b5d2680183ecd02d567e11e9c4ece4f54a1b61ae6b78c8ae5df9ae7290d",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3013",
+      "sdk_input_key": "ebd63d707802244b80edb50e320983787a33faffe7ad1c6d5b9fa1947870f15b",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "ebd73f11c2951b987e38480a2343876789dc98944c696c665228f9dec270ad09": {
       "arch": "mipsel",
@@ -62510,6 +63688,25 @@
       "sdk_ref": "03016b47130cd112be325af8cccbfc6e3cb59883",
       "sdk_tag": "3.09.C.1.0-3"
     },
+    "f236f1b59d31d3930ad3cde5bc9ca6c91b2360be6a86109cff894f683d512b6c": {
+      "arch": "mipsel",
+      "board": "en7528",
+      "config": "target/linux/en7528/KN-3810/ndwrt.config",
+      "config_sha256": "6a58c4e4640819d9473233f5a21de49683e4e5a275674146219ad6a163fade66",
+      "input_identity": {
+        "board_makefile_sha256": "a7c7b56293f58828aec129f79aef6b965f3bd08226c11842d66e35b0d5c1ffd4",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3810",
+      "sdk_input_key": "f236f1b59d31d3930ad3cde5bc9ca6c91b2360be6a86109cff894f683d512b6c",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "f26c0029262b483bcc4473ecaed522b8a516381cb3b749c11682e54634e28b2d": {
       "arch": "mips",
       "board": "en7516",
@@ -62548,6 +63745,25 @@
       "sdk_ref": "b6c31fef5a780722560d0d7d4de8695d709fa715",
       "sdk_tag": "3.08.C.8.0-0"
     },
+    "f2bcfc62cf3daba5c0e25bad104b000c9f4e9dd09e1c671ba7fcbf3aa7a6a632": {
+      "arch": "mips",
+      "board": "en7512",
+      "config": "target/linux/en7512/KN-2010/ndwrt.config",
+      "config_sha256": "c9162bff3af55e7271532975b47d8bb19d9d85df4b53ea6edc81d9a3744b83ff",
+      "input_identity": {
+        "board_makefile_sha256": "682ae026b36cac3f4f28b4364889799175fb3524fd8894ede000a3ea250cf914",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-2010",
+      "sdk_input_key": "f2bcfc62cf3daba5c0e25bad104b000c9f4e9dd09e1c671ba7fcbf3aa7a6a632",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
+    },
     "f2c8fd35dc8d11613ad14121f4b69815cbeda96bbcd12d26031cccc7c20d01a9": {
       "arch": "mipsel",
       "board": "mt7628",
@@ -62585,6 +63801,25 @@
       "sdk_input_key": "f2d0dcd5af26cef77e5455fb007315a0094d804dc6afa3014ecabdf407279d19",
       "sdk_ref": "e0db3db60fc1a0f9c80b73b475c76fb2d48cef60",
       "sdk_tag": "4.00.C.4.0-0"
+    },
+    "f2d2e4136af6e5946f13c158c1efc96ddd676efe6c417043ccc90b853b426b7d": {
+      "arch": "mipsel",
+      "board": "mt7628",
+      "config": "target/linux/mt7628/KN-3211/ndwrt.config",
+      "config_sha256": "3801bb6e435e67f97546bd52d47f65efbb565c26d5a21aefcc8b354e7ab74bf9",
+      "input_identity": {
+        "board_makefile_sha256": "846c0c0d12fd9d6461c896f931b69e3b22224a8b65d6715df04ec8b5c468f644",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3211",
+      "sdk_input_key": "f2d2e4136af6e5946f13c158c1efc96ddd676efe6c417043ccc90b853b426b7d",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "f2e0f7def46e76b874d1d4125882168ecac6e64857b53be26927c77f31a42995": {
       "arch": "mipsel",
@@ -63003,6 +64238,25 @@
       "sdk_input_key": "f48c21fa0a178749b62c3b726dd7923a8f3d24ec1f907fc3da4a9e8908b4cc6f",
       "sdk_ref": "36991db95a29075dad737a7f7f8d2c5aab02ef6c",
       "sdk_tag": "4.00.B.1.0-0"
+    },
+    "f48d4a7338988c227c9e875fa135ca7929e330fdec428fed2c06a9517229e3fd": {
+      "arch": "mipsel",
+      "board": "en7528",
+      "config": "target/linux/en7528/KN-3710/ndwrt.config",
+      "config_sha256": "365b4e22495e37a9e0cb6e24f104aa904b2038609500a783230dd08586ae6608",
+      "input_identity": {
+        "board_makefile_sha256": "a7c7b56293f58828aec129f79aef6b965f3bd08226c11842d66e35b0d5c1ffd4",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3710",
+      "sdk_input_key": "f48d4a7338988c227c9e875fa135ca7929e330fdec428fed2c06a9517229e3fd",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "f493e1b51291816fbb6a235f6934a6cb4109e9349db729850eac1c7a975ef586": {
       "arch": "mipsel",
@@ -63516,6 +64770,25 @@
       "sdk_input_key": "f69dd87c5aa50956b38ddddccaf9207a00acbbfbd56d288f857b848bd45e4f7d",
       "sdk_ref": "8812c38af344fe50deffc9fb866cb4ece5f09fbe",
       "sdk_tag": "3.07.A.2.0-2"
+    },
+    "f69e7a834964d72a55b64adf8ceae3d36d9a47ad6feba469d495345ca6763295": {
+      "arch": "aarch64",
+      "board": "mt7981",
+      "config": "target/linux/mt7981/KN-3712/ndwrt.config",
+      "config_sha256": "b53b369f0a5fd5f2145fb515e7e99ac5ae44f45abaca02eb96f66ad88fdaeeff",
+      "input_identity": {
+        "board_makefile_sha256": "522e0f67c5c3446f7fdff28cdc0d8f7245446a6aa546da17ac1e0b660c546836",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-3712",
+      "sdk_input_key": "f69e7a834964d72a55b64adf8ceae3d36d9a47ad6feba469d495345ca6763295",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     },
     "f6b45ccda933869e3cecadac350dac7d3b517c77e31d590596079aa75bb5905f": {
       "arch": "mipsel",
@@ -66024,6 +67297,25 @@
       "sdk_input_key": "ffe45b266495598a4ef34b6aca6682b376d74335de62980f64146743ba4d367a",
       "sdk_ref": "45af85c0d3ae09bd58dc185753836451ed3c9c83",
       "sdk_tag": "3.09.C.1.0-0"
+    },
+    "ffe838b385a3f5fac8f7baf4b6c83e07731a10e6a23aaa041872b54e242e9b8b": {
+      "arch": "mipsel",
+      "board": "en7528",
+      "config": "target/linux/en7528/KN-1912/ndwrt.config",
+      "config_sha256": "002f0b33dd11934b50445f28b3c6e0b467ec7ff50389c3d17caa24e38b4c61bd",
+      "input_identity": {
+        "board_makefile_sha256": "a7c7b56293f58828aec129f79aef6b965f3bd08226c11842d66e35b0d5c1ffd4",
+        "scope": "all tracked SDK files except root README.md",
+        "sdk_build_tree_sha256": "fe4865c91fb07b08f8bc68703cd6ba8ae28e44fe6cfc29bdcb31afb5cade941c"
+      },
+      "kernel_patchver": "4.9",
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_repository": "https://github.com/keenetic/kernel-49.git",
+      "kernel_source_version": "4.9.337-181-4",
+      "model": "KN-1912",
+      "sdk_input_key": "ffe838b385a3f5fac8f7baf4b6c83e07731a10e6a23aaa041872b54e242e9b8b",
+      "sdk_ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
+      "sdk_tag": "5.01.C.7.0-4"
     }
   },
   "repository": "https://github.com/keenetic/keenetic-sdk.git",
@@ -86947,6 +88239,294 @@
         }
       },
       "ref": "1d58c10c46e270d6876836e5455fa4e9b786ad1e",
+      "series": "5.01"
+    },
+    "5.01.C.7.0-4": {
+      "kernel_ref": "0dfac93320cb6024fddf72d29dad3de8cd59c78d",
+      "kernel_source_version": "4.9.337-181-4",
+      "models": {
+        "KAP-630": {
+          "reason": "unsupported model ID 'KAP-630'; expected KN-####: target/linux/mt7981/KAP-630/ndwrt.config",
+          "status": "unsupported"
+        },
+        "KAP-650": {
+          "reason": "unsupported model ID 'KAP-650'; expected KN-####: target/linux/mt7981/KAP-650/ndwrt.config",
+          "status": "unsupported"
+        },
+        "KN-1010": {
+          "configuration": "479414d20e57d8b173295d2e586537647a0bf514150626646ba332e43501e468",
+          "status": "supported"
+        },
+        "KN-1011": {
+          "configuration": "43e52f9372a0a9ee2fa29bf74b62d9301784b4b653ef185724ad5fce203184d5",
+          "status": "supported"
+        },
+        "KN-1012": {
+          "configuration": "3afb22cca2e7c43778d3237233cb343759503b60b1f7bec7b6b043ed07a3f678",
+          "status": "supported"
+        },
+        "KN-1111": {
+          "configuration": "5fe1d0a1ee5ebb419af47e7e99f9d43daa51b61669c928cf9a86e50270edaacf",
+          "status": "supported"
+        },
+        "KN-1112": {
+          "configuration": "d3a9026cfc0a0ccf344bae824d74442e08e9142ce30863cc6a66a6f11f43dc69",
+          "status": "supported"
+        },
+        "KN-1121": {
+          "configuration": "198e4ebaff44ca69b3aa3391e9a02cd4fce4a5ac7f7bd53f02070dddd5ccb7f4",
+          "status": "supported"
+        },
+        "KN-1211": {
+          "configuration": "e4a5b9db0b7504be9278b1d5f1ed4192e569cd7eb2211e5845be803dc10eeaaf",
+          "status": "supported"
+        },
+        "KN-1212": {
+          "configuration": "ca0d50783f1f79aafb2222c5a000f065d2c9fb38ff50916a148bb1478b8463a3",
+          "status": "supported"
+        },
+        "KN-1213": {
+          "configuration": "755a85b0616b9241ebd498f5cace62a445880ba497e55ca6c133da0b92e62208",
+          "status": "supported"
+        },
+        "KN-1221": {
+          "configuration": "6f4869e0ad48f52e53036fa8c6cf40e5393f37fff0ea84fa5f4ca30639af1184",
+          "status": "supported"
+        },
+        "KN-1613": {
+          "configuration": "c2e562393f96940104e7b634dff71f99b914a90947d642b5d1d72e13ffa69908",
+          "status": "supported"
+        },
+        "KN-1621": {
+          "configuration": "8033f836fb7c954cf0a34167da9902e402a1d35d0e9ea5b89da1f1945d4d90e4",
+          "status": "supported"
+        },
+        "KN-1713": {
+          "configuration": "da06da8c4c2d89bfae21c5d3a6f6ec62e056e542ca97f9725ac3522369e387b1",
+          "status": "supported"
+        },
+        "KN-1714": {
+          "configuration": "af4e4529bca79e9a07ecb1934e98f0aa38bc99c793625e1fffdd5948b5c0fb7a",
+          "status": "supported"
+        },
+        "KN-1721": {
+          "configuration": "0d2c656f9d28e6eccb4d84d3547ecde614b2daffb25b098fed97c9be5caf7117",
+          "status": "supported"
+        },
+        "KN-1810": {
+          "configuration": "b0ffa305fde5fdba1879d2069c5951c355f0c011439133c7045a1c4e11461be5",
+          "status": "supported"
+        },
+        "KN-1811": {
+          "configuration": "8cc6cf88f065aa5ce7c37097f9ad0808a4396a46e7c2ddbfdd42e9653db69a6f",
+          "status": "supported"
+        },
+        "KN-1812": {
+          "configuration": "1d66bbeff92670cb2ab342f2dc4e70232737b7aff692ca49bb1616a7bfe6de48",
+          "status": "supported"
+        },
+        "KN-1910": {
+          "configuration": "5d1bedd47854e451ae4153bc7f407f60e5b521320bebe42ad9a849cab14286be",
+          "status": "supported"
+        },
+        "KN-1912": {
+          "configuration": "ffe838b385a3f5fac8f7baf4b6c83e07731a10e6a23aaa041872b54e242e9b8b",
+          "status": "supported"
+        },
+        "KN-1913": {
+          "configuration": "39755c7803debbd98dab3d0c5a9c57f72bb20a2ec42ef58df1b7e228a4b0cfa4",
+          "status": "supported"
+        },
+        "KN-2010": {
+          "configuration": "f2bcfc62cf3daba5c0e25bad104b000c9f4e9dd09e1c671ba7fcbf3aa7a6a632",
+          "status": "supported"
+        },
+        "KN-2011": {
+          "configuration": "56f0c5ead2c93f4050e0022dc191c51576f3ea81eacc9cce50e22251d704971e",
+          "status": "supported"
+        },
+        "KN-2012": {
+          "configuration": "2535ebc89f337e3ea904c119da71528b2fd3018b3e0e81e9691d760b7ad55343",
+          "status": "supported"
+        },
+        "KN-2013": {
+          "configuration": "582cb930de5439e0b16296f7722f6a4771176fce55ce56a251b61b5ebaafeedb",
+          "status": "supported"
+        },
+        "KN-2110": {
+          "configuration": "c1328119831e3f56861925d38d69fac4535d3be0468ff4dce05673bd13eccc7c",
+          "status": "supported"
+        },
+        "KN-2111": {
+          "configuration": "49bd97154453afe466cf853a75cedafc7e435f0b298b0cf09e041a2871880148",
+          "status": "supported"
+        },
+        "KN-2112": {
+          "configuration": "2ab6bea206664a5bbb528e9f02f6426f0e1455c9396240205d18f57d864437d1",
+          "status": "supported"
+        },
+        "KN-2113": {
+          "configuration": "d9cfc8b2d06c85131a6a6175f30916fd2c0fae05c17144a37f2214f6ec4f5af5",
+          "status": "supported"
+        },
+        "KN-2210": {
+          "configuration": "a0ec7c1d2f37575a3113bc2eb8985ca113bc1c7052efe3ee18457e9cd6a337a3",
+          "status": "supported"
+        },
+        "KN-2211": {
+          "configuration": "8daac91382ea5b87d9edf65814a56ea92ab3c7ea2cfc8943cdd20900192d87fb",
+          "status": "supported"
+        },
+        "KN-2212": {
+          "configuration": "a23bf14a9bcdaa91d89bd7fdb9516cbc03f3cce7937d18aefd0af794eebc4645",
+          "status": "supported"
+        },
+        "KN-2310": {
+          "configuration": "0fc74e240b04e1d388313f3ab9c1d27c17f99dc9078ca2124000f54770fde561",
+          "status": "supported"
+        },
+        "KN-2311": {
+          "configuration": "07121b9c9891147b47fa5a54e269e3bb96e6379768fe4e7c314524afab49d0e3",
+          "status": "supported"
+        },
+        "KN-2312": {
+          "configuration": "8cfa253b4cc86db72a512006c75d38de03d9da4e077a84cd1bff35801be96214",
+          "status": "supported"
+        },
+        "KN-2313": {
+          "configuration": "db8ce1c8af160bd9e877bf624cf31bdd28e269e3f801019852d2b25f058fcca1",
+          "status": "supported"
+        },
+        "KN-2410": {
+          "configuration": "799dd8c15ee30262585d080a702714275f26402bfee00e02b35eb5c13df4b0d1",
+          "status": "supported"
+        },
+        "KN-2510": {
+          "configuration": "7a6105947b119e9d8eab1f2802a6e3fafae870ab1547ba8690932d6cb14598d6",
+          "status": "supported"
+        },
+        "KN-2610": {
+          "configuration": "6b28ec478d8a1dc33dd7f44fd66294633575aced0805c41921fc71bf6401a735",
+          "status": "supported"
+        },
+        "KN-2710": {
+          "configuration": "6f3f6ea8e4aedf705cd6b46508081d552a16dfcfc59017fb88e2ee17c2099f07",
+          "status": "supported"
+        },
+        "KN-2810": {
+          "configuration": "5121ef2a4dce61d6c07b101df255eed112bf3263726c470ccc8c65cd9c7c2989",
+          "status": "supported"
+        },
+        "KN-2910": {
+          "configuration": "e2bd28ff0baa7ef4a4c2614920bf0f0f08ad44d01136d8978e4b806a01599ae2",
+          "status": "supported"
+        },
+        "KN-2911": {
+          "configuration": "d0c8498c1d08e48df2990a65b4ee838b69ad53b3851b4c67961faadddb11cce4",
+          "status": "supported"
+        },
+        "KN-3010": {
+          "configuration": "66ba02ccc9084fec643175d225ef8a06c28d0cf4c690e8c3f58146fe08bb40fa",
+          "status": "supported"
+        },
+        "KN-3012": {
+          "configuration": "7ae22c379276ad7fd71edbd0c5113c454b3a0f03c41c9e781717a28d34c543a7",
+          "status": "supported"
+        },
+        "KN-3013": {
+          "configuration": "ebd63d707802244b80edb50e320983787a33faffe7ad1c6d5b9fa1947870f15b",
+          "status": "supported"
+        },
+        "KN-3210": {
+          "configuration": "2b8bcbc5235ef2ac2ae2dbae09ee5fa22183d1905a3261a481584873af2c9522",
+          "status": "supported"
+        },
+        "KN-3211": {
+          "configuration": "f2d2e4136af6e5946f13c158c1efc96ddd676efe6c417043ccc90b853b426b7d",
+          "status": "supported"
+        },
+        "KN-3310": {
+          "configuration": "0db5100ba12302f926cb6a2bb30c743ece73f73a9665dc7b73d324c73fd1f720",
+          "status": "supported"
+        },
+        "KN-3311": {
+          "configuration": "eb9ea68f2abd771185b89653eafa348ec2d6f13e91b05c40c39d3059ba013716",
+          "status": "supported"
+        },
+        "KN-3410": {
+          "configuration": "a02e7dfb4867cbb561406308f0ccf47114d7bacfa15b9db1a69de811d9f7ea59",
+          "status": "supported"
+        },
+        "KN-3411": {
+          "configuration": "882873c6f54fa441314cab99bb5c2fc7bd73d0b3efa502cdafafa9bab1588725",
+          "status": "supported"
+        },
+        "KN-3510": {
+          "configuration": "4ec3cfbb7fde0029f69b8cf18c7deb512c00ba4a43d819ee8f118dd9ef2923eb",
+          "status": "supported"
+        },
+        "KN-3610": {
+          "configuration": "51b18ce12bd7064b3509d18ca64636d94714fd16a413a96cea02e08180cb48f3",
+          "status": "supported"
+        },
+        "KN-3611": {
+          "configuration": "5943767406508e5b59ce6c9bd55b4784dfbac4545eede4fc4e3344d3b7e75197",
+          "status": "supported"
+        },
+        "KN-3710": {
+          "configuration": "f48d4a7338988c227c9e875fa135ca7929e330fdec428fed2c06a9517229e3fd",
+          "status": "supported"
+        },
+        "KN-3711": {
+          "configuration": "bdab6baac240c1d1c7fe112109349d8bb7b1ce421a139534558daa2d8a5cc15e",
+          "status": "supported"
+        },
+        "KN-3712": {
+          "configuration": "f69e7a834964d72a55b64adf8ceae3d36d9a47ad6feba469d495345ca6763295",
+          "status": "supported"
+        },
+        "KN-3810": {
+          "configuration": "f236f1b59d31d3930ad3cde5bc9ca6c91b2360be6a86109cff894f683d512b6c",
+          "status": "supported"
+        },
+        "KN-3811": {
+          "configuration": "09592d0ac785f58ad66fce1c58cbeee171c7e0ffb394ccae8c53029151e27b18",
+          "status": "supported"
+        },
+        "KN-3812": {
+          "configuration": "bd0acf61fdd6d43e5ec926ac89a6e4a55c9f62ba97476887712d9eeb6fd3d29d",
+          "status": "supported"
+        },
+        "KN-3910": {
+          "configuration": "de381fa1f58a70ad14f1f8150fd516872e97400713c463f1e2dd536ad24291b8",
+          "status": "supported"
+        },
+        "KN-3911": {
+          "configuration": "33fe0fe8627e4525e0b549e57df53d446f016a84140ec81014b9275a803223a4",
+          "status": "supported"
+        },
+        "KN-4010": {
+          "configuration": "204de742e4dbc8d8996a774c42b2995b9a068fcc59e86b3d6bb7a4c25c1eab7b",
+          "status": "supported"
+        },
+        "KN-4110": {
+          "configuration": "1ab4e406b65bbd6aab134017f7217704ff10233a4079b5e43ab8a29fdbe988e7",
+          "status": "supported"
+        },
+        "KN-4210": {
+          "configuration": "e73a4aef241790910b00eae7ed587aa826aa6bbe13a0c1f9fc198321140b3e32",
+          "status": "supported"
+        },
+        "KN-4410": {
+          "configuration": "d07cc6e7a566277c31d00c635ef125939a1dc39c2ee2dcba70b16e47158cabb5",
+          "status": "supported"
+        },
+        "KN-4910": {
+          "configuration": "9570031586d07cee7f3358467c0f04a03691454fa72e32a7a08c12ae16b10136",
+          "status": "supported"
+        }
+      },
+      "ref": "03a243ba54507e7117c4c7852ee7a4cd6fcc886a",
       "series": "5.01"
     }
   }
